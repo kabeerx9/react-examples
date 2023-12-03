@@ -1,6 +1,8 @@
 // using tanstack react-query & react-intersection-observer
 
 import { useInfiniteQuery } from "@tanstack/react-query";
+import { useEffect } from "react";
+import { useInView } from "react-intersection-observer";
 
 interface Todo {
 	userId: number;
@@ -10,6 +12,8 @@ interface Todo {
 }
 
 const InfiniteScroll = () => {
+	const { ref, inView } = useInView();
+
 	const fetchTodos = async ({ pageParam }: { pageParam: number }) => {
 		const res = await fetch(
 			`https://jsonplaceholder.typicode.com/todos?_page=${pageParam}`
@@ -47,6 +51,10 @@ const InfiniteScroll = () => {
 		))
 	);
 
+	useEffect(() => {
+		if (inView && hasNextPage) fetchNextPage();
+	}, [inView, hasNextPage, fetchNextPage]);
+
 	if (status === "pending") {
 		return <p>Loading ....</p>;
 	}
@@ -58,6 +66,7 @@ const InfiniteScroll = () => {
 		<div className="flex flex-col gap-2 items-center">
 			{todoContent}
 			<button
+				ref={ref}
 				className="p-2 m-2 shadow-sm rounded-lg bg-green-400 "
 				onClick={() => fetchNextPage()}
 				disabled={!hasNextPage || isFetchingNextPage}
