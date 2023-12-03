@@ -1,20 +1,27 @@
 import { useEffect, useState } from 'react';
 import { Button } from './ui/button';
+import { Input } from './ui/input';
 
 const Temp = () => {
   const [query, setQuery] = useState('');
 
-  useEffect(() => {
-    console.log('use effect inside query');
+  
 
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      console.log('QUERY', query);
+    }, 1000);
     return () => {
-      console.log('CLEAN UP USE EFFECT');
+      clearTimeout(timer);
     };
   }, [query]);
 
   return (
     <div className="flex justify-center items-center h-full w-full">
-      <Button size="sm">Click me bro </Button>
+      <div>
+        <Input value={query} onChange={(e) => setQuery(e.target.value)} />
+        <Button size="sm">Click me bro </Button>
+      </div>
     </div>
   );
 };
