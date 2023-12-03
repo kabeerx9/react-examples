@@ -1,8 +1,8 @@
 // using tanstack react-query & react-intersection-observer
 
-import { useInfiniteQuery } from "@tanstack/react-query";
-import { useEffect } from "react";
-import { useInView } from "react-intersection-observer";
+import { useInfiniteQuery } from '@tanstack/react-query';
+import { useEffect } from 'react';
+import { useInView } from 'react-intersection-observer';
 
 interface Todo {
 	userId: number;
@@ -30,7 +30,7 @@ const InfiniteScroll = () => {
 		isFetchingNextPage,
 		hasNextPage,
 	} = useInfiniteQuery({
-		queryKey: ["todos"],
+		queryKey: ['todos'],
 		queryFn: fetchTodos,
 		initialPageParam: 1,
 		getNextPageParam: (lastPage, allPages) => {
@@ -43,8 +43,7 @@ const InfiniteScroll = () => {
 		page.map((todo: Todo) => (
 			<div
 				className=" h-10 w-full p-2 m-2 text-center font-semibold text-xl bg-pink-800 text-white "
-				key={todo.id}
-			>
+				key={todo.id}>
 				<h1>{todo.title}</h1>
 				<p>{todo.completed}</p>
 			</div>
@@ -55,10 +54,10 @@ const InfiniteScroll = () => {
 		if (inView && hasNextPage) fetchNextPage();
 	}, [inView, hasNextPage, fetchNextPage]);
 
-	if (status === "pending") {
+	if (status === 'pending') {
 		return <p>Loading ....</p>;
 	}
-	if (status === "error") {
+	if (status === 'error') {
 		return <p>Error : {error?.message}</p>;
 	}
 
@@ -69,13 +68,12 @@ const InfiniteScroll = () => {
 				ref={ref}
 				className="p-2 m-2 shadow-sm rounded-lg bg-green-400 "
 				onClick={() => fetchNextPage()}
-				disabled={!hasNextPage || isFetchingNextPage}
-			>
+				disabled={!hasNextPage || isFetchingNextPage}>
 				{isFetchingNextPage
-					? "Loading more..."
+					? 'Loading more...'
 					: hasNextPage
-					? "Load More"
-					: "Nothing more to load"}
+					? 'Load More'
+					: 'Nothing more to load'}
 			</button>
 		</div>
 	);

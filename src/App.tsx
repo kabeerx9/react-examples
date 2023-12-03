@@ -1,4 +1,4 @@
-import InfiniteScroll from "./components/InfiniteScroll";
+import InfiniteScroll from './components/InfiniteScroll';
 
 const App = () => {
 	return (

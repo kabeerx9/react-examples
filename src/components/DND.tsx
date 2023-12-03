@@ -1,10 +1,10 @@
-import { useState } from "react";
+import { useState } from 'react';
 import {
 	DragDropContext,
 	Droppable,
 	Draggable,
 	DropResult,
-} from "react-beautiful-dnd";
+} from 'react-beautiful-dnd';
 
 // Define the type for your items
 interface Items {
@@ -12,9 +12,9 @@ interface Items {
 }
 
 const initialItems: Items = {
-	footballers: ["Messi", "Ronaldo", "Mbappe", "Neymar", "Haaland"],
-	animals: ["Dog", "Cat", "Horse", "Lion", "Tiger"],
-	cricket: ["Sachin", "Virat", "Dhoni", "Rohit", "Rahul"],
+	footballers: ['Messi', 'Ronaldo', 'Mbappe', 'Neymar', 'Haaland'],
+	animals: ['Dog', 'Cat', 'Horse', 'Lion', 'Tiger'],
+	cricket: ['Sachin', 'Virat', 'Dhoni', 'Rohit', 'Rahul'],
 };
 
 const Task = () => {
@@ -67,8 +67,7 @@ const Task = () => {
 								<div
 									className="flex flex-col gap-5 border-4 border-gray-400 rounded-xl p-5"
 									{...provided.droppableProps}
-									ref={provided.innerRef}
-								>
+									ref={provided.innerRef}>
 									{fieldData.map((item, index) => (
 										<Draggable key={item} index={index} draggableId={item}>
 											{(provided) => (
@@ -76,8 +75,7 @@ const Task = () => {
 													className="w-40 h-20 flex justify-center items-center text-3xl font-semibold bg-white"
 													{...provided.draggableProps}
 													{...provided.dragHandleProps}
-													ref={provided.innerRef}
-												>
+													ref={provided.innerRef}>
 													{item}
 												</div>
 											)}
