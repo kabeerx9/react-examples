@@ -1,14 +1,15 @@
-import InfiniteScroll from './components/InfiniteScroll';
+import Temp from './components/Temp';
 
 const App = () => {
-	return (
-		<>
-			<div>
-				{/* <DND /> */}
-				<InfiniteScroll />
-			</div>
-		</>
-	);
+  return (
+    <>
+      <div className="h-screen w-screen">
+        {/* <DND /> */}
+        {/* <InfiniteScroll /> */}
+        <Temp />
+      </div>
+    </>
+  );
 };
 
 export default App;
