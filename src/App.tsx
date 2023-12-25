@@ -1,12 +1,10 @@
-import Practice3 from './interview-challenge/Practice3';
+import ToastSonner from './components/shad-cn/toast-sonner';
 
 const App = () => {
   return (
-    <>
-      <div className="h-screen w-screen bg-gray-200">
-        <Practice3 />
-      </div>
-    </>
+    <div className="h-screen w-screen bg-gray-200">
+      <ToastSonner />
+    </div>
   );
 };
 
