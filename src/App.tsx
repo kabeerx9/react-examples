@@ -1,9 +1,9 @@
-import LazyLoading from './learning/performance/lazy-loading';
+import Memoize from './learning/performance/memoize';
 
 const App = () => {
   return (
-    <div className="h-screen w-screen bg-red-300 ">
-      <LazyLoading />
+    <div className="h-screen w-screen">
+      <Memoize />
     </div>
   );
 };
