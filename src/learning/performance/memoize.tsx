@@ -28,7 +28,7 @@ let CustomLI = ({ children }: { children: React.ReactNode }) => {
 
 // so the use case of this can be , like even if a prop changes but we don't want to re-render the component , let's say prop a changes but we don't want to re-render the component , so we can use this to prevent re-rendering
 const compare = (prevProps: any, nextProps: any) => {
-  // this will return true if we want to re-render and false if we don't
+  // return false if we want to re-render the component and true otherwise
   console.log(prevProps, nextProps);
   return true;
 };
