@@ -26,7 +26,14 @@ let CustomLI = ({ children }: { children: React.ReactNode }) => {
 
 // comment the line below for un-memoized component and see the difference , so if props are same it will not re-render
 
-CustomLI = React.memo(CustomLI); // memoized what this component renders
+// so the use case of this can be , like even if a prop changes but we don't want to re-render the component , let's say prop a changes but we don't want to re-render the component , so we can use this to prevent re-rendering
+const compare = (prevProps: any, nextProps: any) => {
+  // this will return true if we want to re-render and false if we don't
+  console.log(prevProps, nextProps);
+  return true;
+};
+
+CustomLI = React.memo(CustomLI, compare); // memoized what this component renders
 
 const Memoize = () => {
   const [flip, setFlip] = useState(false);
