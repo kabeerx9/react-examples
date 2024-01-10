@@ -125,8 +125,16 @@ const FilesTree = ({ data }: { data: FileType }) => {
 };
 const Practice3 = () => {
   return (
-    <div className={'h-full w-full text-2xl flex items-center justify-center'}>
-      <FilesTree data={tempData} />
+    <div className="space-y-20">
+      <div className=" text-center text-xl">
+        TASK : Create a Tree like component consisting of files and folders ,
+        the add functionality is temporary (lost with refresh){' '}
+      </div>
+      <div
+        className={'h-full w-full text-2xl flex items-center justify-center'}
+      >
+        <FilesTree data={tempData} />
+      </div>
     </div>
   );
 };

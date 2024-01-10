@@ -20,12 +20,12 @@ const EventBubblingExample = () => {
   return (
     <div
       onClick={handleParentClick}
-      style={{ padding: '50px', backgroundColor: '#f8f9fa' }}
+      className="bg-gray-200 h-1/2 flex justify-around items-center  text-black font-bold py-2 px-4 rounded"
     >
       Parent Div (Click anywhere inside the box)
       <button
         onClick={handleChildClick}
-        style={{ display: 'block', marginTop: '20px' }}
+        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
       >
         Child Button
       </button>

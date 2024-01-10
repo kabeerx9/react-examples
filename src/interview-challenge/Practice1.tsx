@@ -28,21 +28,26 @@ const Practice1 = () => {
   };
 
   return (
-    <div className="flex justify-center items-center p-4 text-2xl gap-8">
-      <div className="flex flex-col gap-4 border-2 border-black p-4 rounded-lg">
-        {cartA.map((item, index) => (
-          <div key={index}>
-            {index + 1} : {item}
-          </div>
-        ))}
+    <div className="space-y-10">
+      <div className="text-center font-semibold text-3xl text-purple-600">
+        TASK : Swap odd positions on clicking the button
       </div>
-      <Button onClick={handleSwap}>Swap</Button>
-      <div className="flex flex-col gap-4 border-2 border-black p-4 rounded-lg">
-        {cartB.map((item, index) => (
-          <div key={index}>
-            {index + 1} : {item}
-          </div>
-        ))}
+      <div className="flex justify-center items-center p-4 text-2xl gap-8">
+        <div className="flex flex-col gap-4 border-2 border-black p-4 rounded-lg">
+          {cartA.map((item, index) => (
+            <div key={index}>
+              {index + 1} : {item}
+            </div>
+          ))}
+        </div>
+        <Button onClick={handleSwap}>Swap</Button>
+        <div className="flex flex-col gap-4 border-2 border-black p-4 rounded-lg">
+          {cartB.map((item, index) => (
+            <div key={index}>
+              {index + 1} : {item}
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );

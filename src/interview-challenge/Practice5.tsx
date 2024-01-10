@@ -78,30 +78,36 @@ const Practice5 = () => {
       });
   };
   return (
-    <form
-      className="flex flex-col bg-gray-200 w-1/2 justify-center items-center "
-      onSubmit={handleSubmit}
-    >
-      <label htmlFor="name">Name</label>
-      <input
-        name="name"
-        type="text"
-        value={formData.name}
-        onChange={handleChange}
-      />
-      {error.name && <p className="text-red-500 font-bold">{error.name}</p>}
-      <label htmlFor="email">Email</label>
-      <input
-        name="email"
-        type="text"
-        value={formData.email}
-        onChange={handleChange}
-      />
-      {error.email && <p className="text-red-500 font-bold">{error.email}</p>}
-      <button className="p-2 m-2 bg-black text-white rounded-lg" type="submit">
-        Submit
-      </button>
-    </form>
+    <div>
+      <div>Simple form with inputs and validation</div>
+      <form
+        className="flex flex-col bg-gray-200 w-1/2 justify-center items-center "
+        onSubmit={handleSubmit}
+      >
+        <label htmlFor="name">Name</label>
+        <input
+          name="name"
+          type="text"
+          value={formData.name}
+          onChange={handleChange}
+        />
+        {error.name && <p className="text-red-500 font-bold">{error.name}</p>}
+        <label htmlFor="email">Email</label>
+        <input
+          name="email"
+          type="text"
+          value={formData.email}
+          onChange={handleChange}
+        />
+        {error.email && <p className="text-red-500 font-bold">{error.email}</p>}
+        <button
+          className="p-2 m-2 bg-black text-white rounded-lg"
+          type="submit"
+        >
+          Submit
+        </button>
+      </form>
+    </div>
   );
 };
 

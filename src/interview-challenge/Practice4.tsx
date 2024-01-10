@@ -24,6 +24,7 @@ const Practice4 = () => {
 
   return (
     <div className="h-full w-full flex flex-col justify-center items-center">
+      <div className="py-5 text-xl">TASK : Simple mole game</div>
       <div className="text-4xl font-semibold shadow-lg p-5 ">
         Score : {score}
       </div>
