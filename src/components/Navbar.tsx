@@ -6,10 +6,36 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import { useNavigate } from 'react-router-dom';
+import { useAppSelector } from '@/hooks';
+import { cn } from '@/lib/utils';
+import { RootState } from '@/store/todo-store/todoStore';
+import { useLocation, useNavigate } from 'react-router-dom';
+
+const ShowTodosFromRedux = () => {
+  const todos = useAppSelector((state: RootState) => state.todo);
+
+  return (
+    <DropdownMenu>
+      <DropdownMenuTrigger>Todos</DropdownMenuTrigger>
+      <DropdownMenuContent>
+        <DropdownMenuLabel>Just showing redux things</DropdownMenuLabel>
+        <DropdownMenuSeparator />
+        {todos.map((todo) => (
+          <DropdownMenuItem
+            key={todo.id}
+            className={cn('bg-green-400', !todo.completed && 'bg-red-400')}
+          >
+            {todo.text}
+          </DropdownMenuItem>
+        ))}
+      </DropdownMenuContent>
+    </DropdownMenu>
+  );
+};
 
 const Navbar = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   return (
     <nav className="w-full p-2 h-16 bg-red-400">
       <div className="flex justify-between">
@@ -38,6 +64,9 @@ const Navbar = () => {
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
+
+        {/* IF I AM ON PRACTICE 6 SHOW TODO FROM REDUX TOOLKIT */}
+        {location.pathname === '/practice6' && <ShowTodosFromRedux />}
 
         {/* THIS IS THE MENU FOR REACT SIMPLE TOPICS */}
 
