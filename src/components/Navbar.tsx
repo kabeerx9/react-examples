@@ -8,11 +8,10 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { useAppSelector } from '@/hooks';
 import { cn } from '@/lib/utils';
-import { RootState } from '@/store/todo-store/todoStore';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 const ShowTodosFromRedux = () => {
-  const todos = useAppSelector((state: RootState) => state.todo);
+  const todos = useAppSelector((state) => state.todo.data);
 
   return (
     <DropdownMenu>
@@ -20,7 +19,7 @@ const ShowTodosFromRedux = () => {
       <DropdownMenuContent>
         <DropdownMenuLabel>Just showing redux things</DropdownMenuLabel>
         <DropdownMenuSeparator />
-        {todos.map((todo) => (
+        {todos?.map((todo) => (
           <DropdownMenuItem
             key={todo.id}
             className={cn('bg-green-400', !todo.completed && 'bg-red-400')}

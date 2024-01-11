@@ -5,15 +5,26 @@ import { useAppDispatch, useAppSelector } from '@/hooks';
 import {
   addTodo,
   deleteTodo,
+  fetchTodos,
   toggleTodo,
-} from '@/store/todo-store/slices/todoSlice';
-import { useState } from 'react';
+} from '@/store/slices/todoSlice';
+import { useEffect, useState } from 'react';
 
 const Practice6 = () => {
-  const todos = useAppSelector((state) => state.todo);
+  const todos = useAppSelector((state) => state.todo.data);
+  const loading = useAppSelector((state) => state.todo.loading);
+  const error = useAppSelector((state) => state.todo.error);
+
   const dispatch = useAppDispatch();
 
   const [todoText, setTodoText] = useState<string>('');
+
+  useEffect(() => {
+    async function fetch() {
+      await dispatch(fetchTodos());
+    }
+    fetch();
+  }, []);
 
   const handleAddTodo = () => {
     dispatch(
@@ -33,9 +44,20 @@ const Practice6 = () => {
     dispatch(toggleTodo(id));
   };
 
+  if (loading)
+    return (
+      <div className="text-4xl text-center text-green-800">
+        Loading from async thunk...
+      </div>
+    );
+  if (error) return <div className="text-4xl text-red-800">Error...</div>;
+
   return (
     <div className="space-y-10 p-5">
-      <div>Simple TODO app but using redux toolkit for state management</div>
+      <div>
+        Simple TODO app but using redux toolkit for state management and data
+        fetching using async thunk{' '}
+      </div>
       <Input
         placeholder="Enter todo text"
         value={todoText}
@@ -43,7 +65,7 @@ const Practice6 = () => {
       />
       <Button onClick={handleAddTodo}>Add Todo</Button>
       <div className="grid grid-cols-2">
-        {todos.map((todo) => (
+        {todos?.map((todo) => (
           <div
             key={todo.id}
             className="flex justify-between items-center pl-10 shadow-lg p-5"

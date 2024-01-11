@@ -7,7 +7,7 @@ import { RouterProvider } from 'react-router-dom';
 
 import { router } from './routes/Router.tsx';
 import { Provider } from 'react-redux';
-import { store } from './store/todo-store/todoStore.ts';
+import { store } from './store/store.ts';
 
 const queryClient = new QueryClient();
 
