@@ -1,4 +1,5 @@
 import Home from '@/Home';
+import InfiniteScroll from '@/interview-challenge/InfiniteScroll';
 import Practice1 from '@/interview-challenge/Practice1';
 import Practice2 from '@/interview-challenge/Practice2';
 import Practice3 from '@/interview-challenge/Practice3';
@@ -38,6 +39,10 @@ export const router = createBrowserRouter([
       {
         path: '/practice6',
         element: <Practice6 />,
+      },
+      {
+        path: '/infinitescroll',
+        element: <InfiniteScroll />,
       },
       // react topic
       {

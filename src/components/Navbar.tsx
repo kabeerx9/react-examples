@@ -61,6 +61,9 @@ const Navbar = () => {
             <DropdownMenuItem onClick={() => navigate('/practice6')}>
               Practice 6
             </DropdownMenuItem>
+            <DropdownMenuItem onClick={() => navigate('/infinitescroll')}>
+              Infinite Scroll
+            </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
 

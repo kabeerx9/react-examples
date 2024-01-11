@@ -3,8 +3,8 @@
 import { useInfiniteQuery } from '@tanstack/react-query';
 import React, { useEffect, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
-import { Input } from './ui/input';
-import { Label } from './ui/label';
+import { Input } from '../components/ui/input';
+import { Label } from '../components/ui/label';
 
 interface Todo {
   userId: number;
