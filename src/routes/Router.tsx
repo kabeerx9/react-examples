@@ -9,6 +9,7 @@ import Practice6 from '@/interview-challenge/Practice6';
 import EffectLearn from '@/learning/effect-learn';
 import ReactErrorBoundary from '@/learning/error-handling/usingErrorBoundaries';
 import EventBubblingExample from '@/learning/event-bubbling';
+import Localization from '@/learning/localization';
 import { createBrowserRouter } from 'react-router-dom';
 
 export const router = createBrowserRouter([
@@ -56,6 +57,10 @@ export const router = createBrowserRouter([
       {
         path: '/effect-learn',
         element: <EffectLearn />,
+      },
+      {
+        path: '/localization',
+        element: <Localization />,
       },
     ],
   },

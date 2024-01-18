@@ -8,6 +8,7 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { useAppSelector } from '@/hooks';
 import { cn } from '@/lib/utils';
+import { useTranslation } from 'react-i18next';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 const ShowTodosFromRedux = () => {
@@ -35,11 +36,14 @@ const ShowTodosFromRedux = () => {
 const Navbar = () => {
   const navigate = useNavigate();
   const location = useLocation();
+  const { t } = useTranslation();
   return (
     <nav className="w-full p-2 h-16 bg-red-400">
       <div className="flex justify-between">
         <DropdownMenu>
-          <DropdownMenuTrigger>Practice</DropdownMenuTrigger>
+          <DropdownMenuTrigger className="bg-gray-200 p-2 rounded-lg">
+            {t('practice')}
+          </DropdownMenuTrigger>
           <DropdownMenuContent>
             <DropdownMenuLabel>Simple challenges </DropdownMenuLabel>
             <DropdownMenuSeparator />
@@ -73,7 +77,9 @@ const Navbar = () => {
         {/* THIS IS THE MENU FOR REACT SIMPLE TOPICS */}
 
         <DropdownMenu>
-          <DropdownMenuTrigger>Topics</DropdownMenuTrigger>
+          <DropdownMenuTrigger className="bg-gray-200 p-2 rounded-lg">
+            {t('topics')}
+          </DropdownMenuTrigger>
           <DropdownMenuContent>
             <DropdownMenuLabel>Basic Things </DropdownMenuLabel>
             <DropdownMenuSeparator />
@@ -85,6 +91,9 @@ const Navbar = () => {
             </DropdownMenuItem>
             <DropdownMenuItem onClick={() => navigate('/effect-learn')}>
               Effect Learn
+            </DropdownMenuItem>
+            <DropdownMenuItem onClick={() => navigate('/localization')}>
+              Localization
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>

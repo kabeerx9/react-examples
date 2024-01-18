@@ -9,6 +9,8 @@ import { router } from './routes/Router.tsx';
 import { Provider } from 'react-redux';
 import { store } from './store/store.ts';
 
+import './i18n.ts';
+
 const queryClient = new QueryClient();
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
