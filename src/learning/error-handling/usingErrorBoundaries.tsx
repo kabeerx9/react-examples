@@ -33,6 +33,9 @@ const Component = () => {
   const { showBoundary } = useErrorBoundary();
 
   const [todos, setTodos] = useState<TODO[]>([]);
+  const [flag, setFlag] = useState<boolean>(false);
+  const [falseArray] = useState<any>(undefined);
+
   useEffect(() => {
     fetch('https://jsonplaceholder.typicode.com/todos')
       .then((res) => res.json())
@@ -40,15 +43,16 @@ const Component = () => {
       .then((data) => setTodos(data));
   }, []);
 
-  // const dummyList = [
-  //   { id: 1, name: 'John Doe' },
-  //   { id: 2, name: 'Jane Doe' },
-  //   { id: 3, name: 'John Smith' },
-  //   { id: 4, name: 'Jane Smith' },
-  // ];
-
   return (
     <div className="flex flex-col text-4xl justify-center items-center space-y-8">
+      <Button onClick={() => showBoundary(new Error('This is a custom error'))}>
+        Trigger Error
+      </Button>
+      <Button onClick={() => setFlag(true)}>
+        Undefined Error (Will be caught)
+      </Button>
+      {flag && <div>{falseArray.map((item: any) => item)}</div>}
+
       {todos.map((todo) => {
         return <div key={todo.id}>{todo.title}</div>;
       })}
