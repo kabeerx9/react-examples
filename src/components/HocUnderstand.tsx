@@ -1,5 +1,5 @@
 import React from 'react';
-import withRole from '@/HOC/withRole';
+import withRole from '@/learning/HOC/withRole';
 
 // so the flow of props is --->
 // page -> StudentWithRole

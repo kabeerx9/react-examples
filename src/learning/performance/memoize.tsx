@@ -1,7 +1,11 @@
 import { cn } from '@/lib/utils';
 import React, { useEffect, useRef, useState } from 'react';
 
-let CustomLI = ({ children }: { children: React.ReactNode }) => {
+interface CustomLIProps {
+  children: React.ReactNode;
+}
+
+let CustomLI: React.FC<CustomLIProps> = ({ children }) => {
   const renderedCount = useRef(0);
   const [flip, setFlip] = useState(false);
   useEffect(() => {
@@ -24,16 +28,13 @@ let CustomLI = ({ children }: { children: React.ReactNode }) => {
   );
 };
 
-// comment the line below for un-memoized component and see the difference , so if props are same it will not re-render
-
-// so the use case of this can be , like even if a prop changes but we don't want to re-render the component , let's say prop a changes but we don't want to re-render the component , so we can use this to prevent re-rendering
-const compare = (prevProps: any, nextProps: any) => {
+const compare = (prevProps: CustomLIProps, nextProps: CustomLIProps) => {
   // return false if we want to re-render the component and true otherwise
   console.log(prevProps, nextProps);
   return true;
 };
 
-CustomLI = React.memo(CustomLI, compare); // memoized what this component renders
+CustomLI = React.memo(CustomLI, compare);
 
 const Memoize = () => {
   const [flip, setFlip] = useState(false);

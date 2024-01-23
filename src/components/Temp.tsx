@@ -15,10 +15,10 @@ const MyComponent = () => {
           const data = editor.getData();
           console.log({ event, editor, data });
         }}
-        onBlur={(event, editor) => {
+        onBlur={(_, editor) => {
           console.log('Blur.', editor);
         }}
-        onFocus={(event, editor) => {
+        onFocus={(_, editor) => {
           console.log('Focus.', editor);
         }}
       />
