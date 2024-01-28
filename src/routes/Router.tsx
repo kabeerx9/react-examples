@@ -6,6 +6,7 @@ import Practice3 from '@/interview-challenge/Practice3';
 import Practice4 from '@/interview-challenge/Practice4';
 import Practice5 from '@/interview-challenge/Practice5';
 import Practice6 from '@/interview-challenge/Practice6';
+import Practice7 from '@/interview-challenge/Practice7';
 import EffectLearn from '@/learning/effect-learn';
 import ReactErrorBoundary from '@/learning/error-handling/usingErrorBoundaries';
 import EventBubblingExample from '@/learning/event-bubbling';
@@ -40,6 +41,10 @@ export const router = createBrowserRouter([
       {
         path: '/practice6',
         element: <Practice6 />,
+      },
+      {
+        path: '/practice7',
+        element: <Practice7 />,
       },
       {
         path: '/infinitescroll',
