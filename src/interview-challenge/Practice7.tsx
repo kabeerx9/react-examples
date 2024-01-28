@@ -52,7 +52,7 @@ const Practice7 = () => {
   };
 
   const handleUserKeyPress = useCallback(
-    (event: React.KeyboardEvent<HTMLInputElement>) => {
+    (event: KeyboardEvent) => {
       if (query.length > 0) return;
       if (event.key === 'Backspace') {
         setTaglist((prev) => prev.slice(0, prev.length - 1));
