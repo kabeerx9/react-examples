@@ -71,6 +71,9 @@ const Navbar = () => {
             <DropdownMenuItem onClick={() => navigate('/infinitescroll')}>
               Infinite Scroll
             </DropdownMenuItem>
+            <DropdownMenuItem onClick={() => navigate('/form-builder')}>
+              Form Builder
+            </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
 
