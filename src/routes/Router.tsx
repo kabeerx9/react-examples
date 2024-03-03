@@ -1,5 +1,5 @@
 import Home from '@/Home';
-import FormBuilder from '@/interview-challenge/FormBuilder';
+import FormBuilder from '@/interview-challenge/form-builder/FormBuilder';
 import InfiniteScroll from '@/interview-challenge/InfiniteScroll';
 import Practice1 from '@/interview-challenge/Practice1';
 import Practice2 from '@/interview-challenge/Practice2';
