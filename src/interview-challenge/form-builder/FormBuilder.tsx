@@ -23,41 +23,6 @@ export type InputDetails = {
   min?: number;
   max?: number;
 };
-const dummyData = [
-  {
-    type: 'text',
-    placeholder: 'Please enter your name',
-    required: true,
-    label: 'Name',
-    min: 1,
-    max: 10,
-  },
-  {
-    type: 'number',
-    placeholder: 'Please Enter marks',
-    required: false,
-    label: 'Marks',
-    min: 10,
-    max: 100,
-  },
-  {
-    type: 'checkbox',
-    name: 'Please Enter marks',
-    required: true,
-    label: 'Is this a good student ? ',
-    min: 10,
-    max: 100,
-  },
-  {
-    type: 'select',
-    name: 'Please Enter marks',
-    required: true,
-    label: 'Favourite food ? ',
-    min: 10,
-    max: 100,
-    options: ['Ice-cream', 'Pastry', 'Chicken', 'Broccoli'],
-  },
-];
 
 const FormBuilder = () => {
   // const [finalFormFields, setFinalFormFields] = useState<InputDetails[]>([]);

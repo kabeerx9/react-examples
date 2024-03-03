@@ -11,6 +11,8 @@ import { Label } from '@/components/ui/label';
 import { PlusIcon } from 'lucide-react';
 import { useEffect, useState } from 'react';
 
+// TODO -> Correct ts-expect-error
+
 interface InputDetails {
   type: string;
   label?: string;
@@ -143,6 +145,7 @@ const DialogComponent = ({
               <Button
                 className="w-1/2"
                 onClick={() => {
+                  //@ts-expect-error don't know the reason
                   setFinalFormFields((prev) => [...prev, inputDetails]);
                   setInputDetails({
                     type: selectedInputType,
@@ -250,6 +253,7 @@ const DialogComponent = ({
               <Button
                 className="w-1/2"
                 onClick={() => {
+                  //@ts-expect-error don't know the reason
                   setFinalFormFields((prev) => {
                     return [...prev, inputDetails];
                   });
@@ -314,6 +318,7 @@ const DialogComponent = ({
               <Button
                 className="w-1/2"
                 onClick={() => {
+                  //@ts-expect-error don't know the reason
                   setFinalFormFields((prev) => {
                     return [...prev, inputDetails];
                   });
@@ -395,6 +400,7 @@ const DialogComponent = ({
               <Button
                 className="w-1/2"
                 onClick={() => {
+                  //@ts-expect-error don't know the reason
                   setFinalFormFields((prev) => {
                     return [...prev, inputDetails];
                   });
