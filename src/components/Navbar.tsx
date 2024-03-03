@@ -40,6 +40,12 @@ const Navbar = () => {
   return (
     <nav className="w-full p-2 h-16 bg-red-400">
       <div className="flex justify-between">
+        <div
+          className="border-2 border-black p-2 rounded-lg bg-green-200 cursor-pointer"
+          onClick={() => navigate('/')}
+        >
+          Home
+        </div>
         <DropdownMenu>
           <DropdownMenuTrigger className="bg-gray-200 p-2 rounded-lg">
             {t('practice')}

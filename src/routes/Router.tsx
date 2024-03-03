@@ -1,3 +1,4 @@
+import App from '@/App';
 import Home from '@/Home';
 import FormBuilder from '@/interview-challenge/form-builder/FormBuilder';
 import InfiniteScroll from '@/interview-challenge/InfiniteScroll';
@@ -19,6 +20,10 @@ export const router = createBrowserRouter([
     path: '/',
     element: <Home />,
     children: [
+      {
+        path: '/',
+        element: <App />,
+      },
       {
         path: '/practice1',
         element: <Practice1 />,
