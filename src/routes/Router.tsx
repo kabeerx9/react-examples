@@ -1,5 +1,6 @@
 import App from '@/App';
 import Home from '@/Home';
+import Accordian from '@/interview-challenge/Accordian';
 import FormBuilder from '@/interview-challenge/form-builder/FormBuilder';
 import InfiniteScroll from '@/interview-challenge/InfiniteScroll';
 import Practice1 from '@/interview-challenge/Practice1';
@@ -59,6 +60,10 @@ export const router = createBrowserRouter([
       {
         path: '/infinitescroll',
         element: <InfiniteScroll />,
+      },
+      {
+        path: '/accordian',
+        element: <Accordian />,
       },
       // react topic
       {

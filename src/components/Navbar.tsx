@@ -80,6 +80,9 @@ const Navbar = () => {
             <DropdownMenuItem onClick={() => navigate('/form-builder')}>
               Form Builder
             </DropdownMenuItem>
+            <DropdownMenuItem onClick={() => navigate('/accordian')}>
+              Accordian
+            </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
 
