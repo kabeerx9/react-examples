@@ -46,7 +46,8 @@
     "sonner": "^1.2.4",
     "sort-by": "^1.2.0",
     "tailwind-merge": "^2.1.0",
-    "tailwindcss-animate": "^1.0.7"
+    "tailwindcss-animate": "^1.0.7",
+    "uuid": "^9.0.1"
   },
   "devDependencies": {
     "@tanstack/eslint-plugin-query": "^5.12.1",
@@ -54,6 +55,7 @@
     "@types/react": "^18.2.37",
     "@types/react-beautiful-dnd": "^13.1.7",
     "@types/react-dom": "^18.2.15",
+    "@types/uuid": "^9.0.8",
     "@typescript-eslint/eslint-plugin": "^6.10.0",
     "@typescript-eslint/parser": "^6.10.0",
     "@vitejs/plugin-react": "^4.2.0",

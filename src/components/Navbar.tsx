@@ -83,6 +83,9 @@ const Navbar = () => {
             <DropdownMenuItem onClick={() => navigate('/accordian')}>
               Accordian
             </DropdownMenuItem>
+            <DropdownMenuItem onClick={() => navigate('/sticky-notes')}>
+              Sticky Notes
+            </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
 
