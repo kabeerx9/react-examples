@@ -11,6 +11,7 @@ import Practice5 from '@/interview-challenge/Practice5';
 import Practice6 from '@/interview-challenge/Practice6';
 import Practice7 from '@/interview-challenge/Practice7';
 import StickyNotes from '@/interview-challenge/sticky-notes';
+import StopWatch from '@/interview-challenge/StopWatch';
 import EffectLearn from '@/learning/effect-learn';
 import ReactErrorBoundary from '@/learning/error-handling/usingErrorBoundaries';
 import EventBubblingExample from '@/learning/event-bubbling';
@@ -69,6 +70,10 @@ export const router = createBrowserRouter([
       {
         path: '/sticky-notes',
         element: <StickyNotes />,
+      },
+      {
+        path: '/stop-watch',
+        element: <StopWatch />,
       },
       // react topic
       {
