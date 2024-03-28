@@ -3,13 +3,31 @@ import { cn } from '@/lib/utils';
 import { BookXIcon, Edit, PinIcon } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
+import { Input } from '@/components/ui/input';
+import { Checkbox } from '@/components/ui/checkbox';
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from '@/components/ui/dialog';
+import { toast } from 'sonner';
+import { initialNotes } from '@/data/tempData';
+
+interface Note {
+  id: string;
+  title: string;
+  description: string;
+  isPinned: boolean;
+}
 
 const StickyNotes = () => {
-  const dragItem = useRef();
-  const dragOverItem = useRef();
+  const dragItem = useRef<string | null>(null);
+  const dragOverItem = useRef<string | null>(null);
   const titleInputRef = useRef<HTMLInputElement>(null);
 
-  const [notes, setNotes] = useState(initialNotes);
+  const [notes, setNotes] = useState<Note[]>(initialNotes);
 
   const [openAddNoteModal, setOpenAddNoteModal] = useState(false);
 
@@ -55,17 +73,17 @@ const StickyNotes = () => {
   };
 
   const dragStart = (e: React.DragEvent<HTMLDivElement>) => {
-    const selectedNote = notes.find((note) => note.id === e.target.id);
+    const selectedNote = notes.find((note) => note.id === e.currentTarget.id);
 
     if (selectedNote && selectedNote.isPinned) {
       toast('Cannot drag pinned notes');
       return;
     }
 
-    dragItem.current = e.target?.id;
+    dragItem.current = e.currentTarget.id;
   };
 
-  const dragEnter = (e: any) => {
+  const dragEnter = (e: React.DragEvent<HTMLDivElement>) => {
     dragOverItem.current = e.currentTarget.id;
   };
 
@@ -122,8 +140,8 @@ const StickyNotes = () => {
           <div
             draggable
             id={note.id.toString()}
-            onDragStart={dragStart}
-            onDragEnter={dragEnter}
+            onDragStart={(e) => dragStart(e)}
+            onDragEnter={(e) => dragEnter(e)}
             onDragEnd={drop}
             key={index}
             className={cn(
@@ -222,18 +240,6 @@ const StickyNotes = () => {
 
 export default StickyNotes;
 
-import { Checkbox } from '@/components/ui/checkbox';
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-} from '@/components/ui/dialog';
-import { Input } from '@/components/ui/input';
-import { toast } from 'sonner';
-import { initialNotes } from '@/data/tempData';
-
 const AddNoteDialog = ({
   openAddNoteModal,
   setOpenAddNoteModal,
@@ -241,7 +247,7 @@ const AddNoteDialog = ({
 }: {
   openAddNoteModal: boolean;
   setOpenAddNoteModal: React.Dispatch<React.SetStateAction<boolean>>;
-  setNotes: React.Dispatch<React.SetStateAction<any[]>>;
+  setNotes: React.Dispatch<React.SetStateAction<Note[]>>;
 }) => {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
@@ -266,7 +272,6 @@ const AddNoteDialog = ({
             <Checkbox
               checked={isPinned}
               onCheckedChange={(checked) => {
-                console.log('Checkbox cheked is ', checked);
                 setIsPinned(!!checked);
               }}
             />
