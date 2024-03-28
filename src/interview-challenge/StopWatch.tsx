@@ -7,11 +7,29 @@ const StopWatch = () => {
   const [seconds, setSeconds] = useState(0);
   const [minutes, setMinutes] = useState(0);
   const [hours, setHours] = useState(0);
-
+  const [isPaused, setIsPaused] = useState(false);
   const [isRunning, setIsRunning] = useState(false);
 
-  const handleButtonClick = (e) => {
-    setIsRunning(!isRunning);
+  const validationCheck = () => {
+    if (seconds < 0 || minutes < 0 || hours < 0) {
+      toast.error('Time cannot be negative');
+      return false;
+    }
+    if (seconds > 59 || minutes > 59 || hours > 59) {
+      toast.error('Time cannot be greater than 59');
+      return false;
+    }
+    return true;
+  };
+
+  const handleButtonClick = () => {
+    if (!isRunning) {
+      const valid = validationCheck();
+      if (!valid) return;
+      setIsRunning(true);
+    } else {
+      setIsPaused(!isPaused);
+    }
   };
 
   const handleTimeChange = () => {
@@ -38,8 +56,8 @@ const StopWatch = () => {
   };
 
   useEffect(() => {
-    let interval;
-    if (isRunning) {
+    let interval: ReturnType<typeof setInterval> | undefined;
+    if (isRunning && !isPaused) {
       interval = setInterval(() => {
         handleTimeChange();
       }, 1000);
@@ -47,7 +65,7 @@ const StopWatch = () => {
       clearInterval(interval);
     }
     return () => clearInterval(interval);
-  }, [isRunning, seconds, hours, minutes]);
+  }, [isRunning, seconds, hours, minutes, isPaused]);
 
   return (
     <div className="h-full w-full flex flex-col gap-5  items-center  bg-white">
@@ -81,7 +99,7 @@ const StopWatch = () => {
       <div className="flex flex-col gap-10  justify-center items-center border-4 border-gray-500 p-5 shadow-lg rounded-lg">
         <div className="flex justify-center items-center gap-4">
           <Button onClick={handleButtonClick}>
-            {isRunning ? 'Stop' : 'Start'}
+            {isRunning ? 'Pause' : 'Start'}
           </Button>
           <Button
             onClick={() => {
