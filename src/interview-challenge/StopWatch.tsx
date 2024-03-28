@@ -36,6 +36,7 @@ const StopWatch = () => {
       }
     }
   };
+
   useEffect(() => {
     let interval;
     if (isRunning) {
@@ -49,39 +50,36 @@ const StopWatch = () => {
   }, [isRunning, seconds, hours, minutes]);
 
   return (
-    <div className="h-full w-full bg-gray-200">
+    <div className="h-full w-full flex flex-col gap-5  items-center  bg-white">
       <div className="text-3xl font-semibold text-center h-12">
         Stop Watch using react
       </div>
-      <div className="flex">
-        <div className="flex-1">
-          {hours < 10 && <span className="text-4xl font-bold">0</span>}
-          <span className="text-4xl font-bold">{hours}</span>
-          <span className="text-4xl font-bold">:</span>
 
-          {minutes < 10 && <span className="text-4xl font-bold">0</span>}
-          <span className="text-4xl font-bold">{minutes}</span>
+      {/* SHOWING STOPWATCH HERE  */}
+
+      {isRunning && (
+        <div className="flex justify-center items-center p-4 border-4 border-gray-800 shadow-lg rounded-lg">
+          <div className="rounded-full bg-black text-white p-2">
+            {hours < 10 && <span className="text-4xl font-bold">0</span>}
+            <span className="text-4xl font-bold">{hours}</span>
+          </div>
           <span className="text-4xl font-bold">:</span>
-          {seconds < 10 && <span className="text-4xl font-bold">0</span>}
-          <span className="text-4xl font-bold">{seconds}</span>
+          <div className="rounded-full bg-black text-white p-2">
+            {minutes < 10 && <span className="text-4xl font-bold">0</span>}
+            <span className="text-4xl font-bold">{minutes}</span>
+          </div>
+          <span className="text-4xl font-bold">:</span>
+          <div className="rounded-full bg-black text-white p-2">
+            {seconds < 10 && <span className="text-4xl font-bold">0</span>}
+            <span className="text-4xl font-bold">{seconds}</span>
+          </div>
         </div>
-        <div className="flex-1 gap-2 flex flex-col">
-          <span>Enter time details </span>
-          <Input
-            type="number"
-            value={hours}
-            onChange={(e) => setHours(Number(e.target.value))}
-          />
-          <Input
-            type="number"
-            value={minutes}
-            onChange={(e) => setMinutes(Number(e.target.value))}
-          />
-          <Input
-            type="number"
-            value={seconds}
-            onChange={(e) => setSeconds(Number(e.target.value))}
-          />
+      )}
+
+      {/* PAUSE AND RESET BUTTON  */}
+
+      <div className="flex flex-col gap-10  justify-center items-center border-4 border-gray-500 p-5 shadow-lg rounded-lg">
+        <div className="flex justify-center items-center gap-4">
           <Button onClick={handleButtonClick}>
             {isRunning ? 'Stop' : 'Start'}
           </Button>
@@ -96,6 +94,28 @@ const StopWatch = () => {
             Reset
           </Button>
         </div>
+
+        {/* INPUT VALUES FOR STOPWATCH  */}
+        {!isRunning && (
+          <div className=" gap-2 flex flex-col">
+            <span className="text-center">Enter time details </span>
+            <Input
+              type="number"
+              value={hours}
+              onChange={(e) => setHours(Number(e.target.value))}
+            />
+            <Input
+              type="number"
+              value={minutes}
+              onChange={(e) => setMinutes(Number(e.target.value))}
+            />
+            <Input
+              type="number"
+              value={seconds}
+              onChange={(e) => setSeconds(Number(e.target.value))}
+            />
+          </div>
+        )}
       </div>
     </div>
   );
