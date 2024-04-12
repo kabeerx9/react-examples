@@ -1,4 +1,5 @@
 import App from '@/App';
+import Temp from '@/components/TimeTableGenerator';
 import Home from '@/Home';
 import Accordian from '@/interview-challenge/Accordian';
 import FormBuilder from '@/interview-challenge/form-builder/FormBuilder';
@@ -74,6 +75,10 @@ export const router = createBrowserRouter([
       {
         path: '/stop-watch',
         element: <StopWatch />,
+      },
+      {
+        path: '/temp',
+        element: <Temp />,
       },
       // react topic
       {
