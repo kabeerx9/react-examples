@@ -28,7 +28,8 @@ const FinalForm = ({ finalFormFields, setFinalFormFields }: FinalFormProps) => {
     return finalFormFields.findIndex((field) => field.id === id);
   };
 
-  const handleDragEnd = (event) => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const handleDragEnd = (event: any) => {
     const { active, over } = event;
     if (active.id === over.id) return;
 

@@ -46,8 +46,8 @@ const TimeTableGenerator = () => {
       periods_per_week: string;
     }[]
   >([]);
-
-  const handleInputFileChange = (event) => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const handleInputFileChange = (event: any) => {
     setFileSelected(event.target.files.length > 0);
     const file = event.target.files[0];
     Papa.parse(file, {
@@ -57,8 +57,8 @@ const TimeTableGenerator = () => {
       skipEmptyLines: true,
     });
   };
-
-  const handleDataParsing = (result) => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const handleDataParsing = (result: any) => {
     setSchoolData([...result.data]);
   };
 
