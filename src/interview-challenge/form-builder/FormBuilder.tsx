@@ -13,6 +13,7 @@ const inputTypes = [
 ];
 
 export type InputDetails = {
+  id: number;
   type: string;
   label?: string;
   name?: string;
@@ -67,7 +68,10 @@ const FormBuilder = () => {
 
       {/* RENDER THE FINAL FORM HERE  */}
 
-      <FinalForm finalFormFields={finalFormFields} />
+      <FinalForm
+        finalFormFields={finalFormFields}
+        setFinalFormFields={setFinalFormFields}
+      />
     </div>
   );
 };

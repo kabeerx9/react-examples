@@ -14,6 +14,7 @@ import { useEffect, useState } from 'react';
 // TODO -> Correct ts-expect-error
 
 interface InputDetails {
+  id: number;
   type: string;
   label?: string;
   name: string;
@@ -37,6 +38,7 @@ const DialogComponent = ({
   setFinalFormFields: (finalFormFields: InputDetails[]) => void;
 }) => {
   const [inputDetails, setInputDetails] = useState<InputDetails>({
+    id: Math.random(),
     type: selectedInputType,
     name: '',
     required: false,
@@ -148,6 +150,7 @@ const DialogComponent = ({
                   //@ts-expect-error don't know the reason
                   setFinalFormFields((prev) => [...prev, inputDetails]);
                   setInputDetails({
+                    id: Math.random(),
                     type: selectedInputType,
                     name: '',
                     required: false,
