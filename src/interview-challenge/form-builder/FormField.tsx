@@ -7,15 +7,15 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import { useSortable } from '@dnd-kit/sortable';
-import { CSS } from '@dnd-kit/utilities';
+// import { useSortable } from '@dnd-kit/sortable';
+// import { CSS } from '@dnd-kit/utilities';
 import { CrosshairIcon } from 'lucide-react';
 import { InputDetails } from './FormBuilder';
 import { v4 as uuidv4 } from 'uuid';
 
 interface FormFieldProps {
   field: InputDetails;
-  handleDeleteField: (id: number) => void;
+  handleDeleteField: (id: string) => void;
 }
 
 const FormField = ({ field, handleDeleteField }: FormFieldProps) => {

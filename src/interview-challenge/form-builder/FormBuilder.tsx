@@ -13,7 +13,7 @@ const inputTypes = [
 ];
 
 export type InputDetails = {
-  id: number;
+  id: string;
   type: string;
   label?: string;
   name?: string;

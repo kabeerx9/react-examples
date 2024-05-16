@@ -9,23 +9,10 @@ import {
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { PlusIcon } from 'lucide-react';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 
-// TODO -> Correct ts-expect-error
-
-interface InputDetails {
-  id: string;
-  type: string;
-  label?: string;
-  name: string;
-  placeholder?: string;
-  required: boolean;
-  options?: string[];
-  values?: string[];
-  min?: number;
-  max?: number;
-}
+import { InputDetails } from './FormBuilder';
 
 const DialogComponent = ({
   openModal,
@@ -36,7 +23,7 @@ const DialogComponent = ({
   openModal: boolean;
   setOpenModal: (openModal: boolean) => void;
   selectedInputType: string;
-  setFinalFormFields: (finalFormFields: InputDetails[]) => void;
+  setFinalFormFields: React.Dispatch<React.SetStateAction<InputDetails[]>>;
 }) => {
   const [inputDetails, setInputDetails] = useState<InputDetails>({
     id: uuidv4(),
@@ -157,7 +144,6 @@ const DialogComponent = ({
               <Button
                 className="w-1/2"
                 onClick={() => {
-                  //@ts-expect-error don't know the reason
                   setFinalFormFields((prev) => [...prev, inputDetails]);
                   resetInputDetails();
                   setOpenModal(false);
@@ -261,7 +247,6 @@ const DialogComponent = ({
               <Button
                 className="w-1/2"
                 onClick={() => {
-                  //@ts-expect-error don't know the reason
                   setFinalFormFields((prev) => {
                     return [...prev, inputDetails];
                   });
@@ -327,7 +312,6 @@ const DialogComponent = ({
               <Button
                 className="w-1/2"
                 onClick={() => {
-                  //@ts-expect-error don't know the reason
                   setFinalFormFields((prev) => {
                     return [...prev, inputDetails];
                   });
@@ -410,7 +394,6 @@ const DialogComponent = ({
               <Button
                 className="w-1/2"
                 onClick={() => {
-                  //@ts-expect-error don't know the reason
                   setFinalFormFields((prev) => {
                     return [...prev, inputDetails];
                   });

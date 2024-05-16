@@ -1,21 +1,21 @@
 import { Button } from '@/components/ui/button';
 import { InputDetails } from './FormBuilder';
 
-import {
-  DndContext,
-  KeyboardSensor,
-  PointerSensor,
-  TouchSensor,
-  closestCorners,
-  useSensor,
-  useSensors,
-} from '@dnd-kit/core';
-import {
-  SortableContext,
-  arrayMove,
-  sortableKeyboardCoordinates,
-  verticalListSortingStrategy,
-} from '@dnd-kit/sortable';
+// import {
+//   DndContext,
+//   KeyboardSensor,
+//   PointerSensor,
+//   TouchSensor,
+//   closestCorners,
+//   useSensor,
+//   useSensors,
+// } from '@dnd-kit/core';
+// import {
+//   SortableContext,
+//   arrayMove,
+//   sortableKeyboardCoordinates,
+//   verticalListSortingStrategy,
+// } from '@dnd-kit/sortable';
 import FormField from './FormField';
 
 interface FinalFormProps {
@@ -48,7 +48,7 @@ const FinalForm = ({ finalFormFields, setFinalFormFields }: FinalFormProps) => {
   //   }),
   // );
 
-  const handleDeleteField = (id: number) => {
+  const handleDeleteField = (id: string) => {
     setFinalFormFields((prev) => prev.filter((field) => field.id !== id));
   };
 
