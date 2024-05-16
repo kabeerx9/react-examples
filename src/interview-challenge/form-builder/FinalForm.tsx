@@ -49,10 +49,8 @@ const FinalForm = ({ finalFormFields, setFinalFormFields }: FinalFormProps) => {
   // );
 
   const handleDeleteField = (id: number) => {
-    console.log('I have been called');
     setFinalFormFields((prev) => prev.filter((field) => field.id !== id));
   };
-  console.log('Final form fields currently are', finalFormFields);
 
   return (
     // <DndContext

@@ -10,11 +10,12 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { PlusIcon } from 'lucide-react';
 import { useEffect, useState } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 
 // TODO -> Correct ts-expect-error
 
 interface InputDetails {
-  id: number;
+  id: string;
   type: string;
   label?: string;
   name: string;
@@ -38,11 +39,20 @@ const DialogComponent = ({
   setFinalFormFields: (finalFormFields: InputDetails[]) => void;
 }) => {
   const [inputDetails, setInputDetails] = useState<InputDetails>({
-    id: Math.random(),
+    id: uuidv4(),
     type: selectedInputType,
     name: '',
     required: false,
   });
+
+  const resetInputDetails = () => {
+    setInputDetails({
+      id: uuidv4(),
+      type: selectedInputType,
+      name: '',
+      required: false,
+    });
+  };
 
   useEffect(() => {
     setInputDetails((prev) => ({
@@ -149,12 +159,7 @@ const DialogComponent = ({
                 onClick={() => {
                   //@ts-expect-error don't know the reason
                   setFinalFormFields((prev) => [...prev, inputDetails]);
-                  setInputDetails({
-                    id: Math.random(),
-                    type: selectedInputType,
-                    name: '',
-                    required: false,
-                  });
+                  resetInputDetails();
                   setOpenModal(false);
                 }}
               >
@@ -260,6 +265,7 @@ const DialogComponent = ({
                   setFinalFormFields((prev) => {
                     return [...prev, inputDetails];
                   });
+                  resetInputDetails();
                   setOpenModal(false);
                 }}
               >
@@ -325,6 +331,7 @@ const DialogComponent = ({
                   setFinalFormFields((prev) => {
                     return [...prev, inputDetails];
                   });
+                  resetInputDetails();
                   setOpenModal(false);
                 }}
               >
@@ -392,7 +399,7 @@ const DialogComponent = ({
               <div className="grid grid-cols-3 gap-2">
                 {inputDetails?.options?.map((option) => (
                   <div
-                    key={option}
+                    key={uuidv4()}
                     className="bg-gray-200 text-black rounded-lg p-2 "
                   >
                     {option}
@@ -407,6 +414,7 @@ const DialogComponent = ({
                   setFinalFormFields((prev) => {
                     return [...prev, inputDetails];
                   });
+                  resetInputDetails();
                   setOpenModal(false);
                 }}
               >

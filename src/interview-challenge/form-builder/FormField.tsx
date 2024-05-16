@@ -11,6 +11,7 @@ import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
 import { CrosshairIcon } from 'lucide-react';
 import { InputDetails } from './FormBuilder';
+import { v4 as uuidv4 } from 'uuid';
 
 interface FormFieldProps {
   field: InputDetails;
@@ -107,7 +108,7 @@ const FormField = ({ field, handleDeleteField }: FormFieldProps) => {
                 </SelectTrigger>
                 <SelectContent>
                   {field.options?.map((option) => (
-                    <SelectItem key={option} value={option}>
+                    <SelectItem key={uuidv4()} value={option}>
                       {option}
                     </SelectItem>
                   ))}
