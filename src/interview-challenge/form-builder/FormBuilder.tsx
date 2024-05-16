@@ -1,5 +1,5 @@
 import { PlusIcon } from 'lucide-react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import DialogComponent from './DialogComponent';
 import FinalForm from './FinalForm';
 
@@ -26,7 +26,6 @@ export type InputDetails = {
 };
 
 const FormBuilder = () => {
-  // const [finalFormFields, setFinalFormFields] = useState<InputDetails[]>([]);
   const [finalFormFields, setFinalFormFields] = useState<InputDetails[]>([]);
 
   const [openModal, setOpenModal] = useState(false);
@@ -36,6 +35,16 @@ const FormBuilder = () => {
     setSelectedInputType(inputType);
     setOpenModal(true);
   };
+
+  useEffect(() => {
+    if (localStorage.getItem('finalFormFields')) {
+      setFinalFormFields(JSON.parse(localStorage.getItem('finalFormFields')!));
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem('finalFormFields', JSON.stringify(finalFormFields));
+  }, [finalFormFields]);
 
   return (
     <div className="w-full h-full flex flex-col space-y-5 justify-center items-center bg-gray-300 ">

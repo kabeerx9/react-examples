@@ -24,60 +24,70 @@ interface FinalFormProps {
 }
 
 const FinalForm = ({ finalFormFields, setFinalFormFields }: FinalFormProps) => {
-  const getFieldPosition = (id: number) => {
-    return finalFormFields.findIndex((field) => field.id === id);
-  };
+  // const getFieldPosition = (id: number) => {
+  //   return finalFormFields.findIndex((field) => field.id === id);
+  // };
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const handleDragEnd = (event: any) => {
-    const { active, over } = event;
-    if (active.id === over.id) return;
+  // const handleDragEnd = (event: any) => {
+  //   const { active, over } = event;
+  //   if (active.id === over.id) return;
 
-    setFinalFormFields((fields) => {
-      const oldIndex = getFieldPosition(active.id);
-      const newIndex = getFieldPosition(over.id);
-      return arrayMove(fields, oldIndex, newIndex);
-    });
+  //   setFinalFormFields((fields) => {
+  //     const oldIndex = getFieldPosition(active.id);
+  //     const newIndex = getFieldPosition(over.id);
+  //     return arrayMove(fields, oldIndex, newIndex);
+  //   });
+  // };
+
+  // const sensors = useSensors(
+  //   useSensor(PointerSensor),
+  //   useSensor(TouchSensor),
+  //   useSensor(KeyboardSensor, {
+  //     coordinateGetter: sortableKeyboardCoordinates,
+  //   }),
+  // );
+
+  const handleDeleteField = (id: number) => {
+    console.log('I have been called');
+    setFinalFormFields((prev) => prev.filter((field) => field.id !== id));
   };
-
-  const sensors = useSensors(
-    useSensor(PointerSensor),
-    useSensor(TouchSensor),
-    useSensor(KeyboardSensor, {
-      coordinateGetter: sortableKeyboardCoordinates,
-    }),
-  );
+  console.log('Final form fields currently are', finalFormFields);
 
   return (
-    <DndContext
-      sensors={sensors}
-      collisionDetection={closestCorners}
-      onDragEnd={handleDragEnd}
-    >
-      <div className="h-1/2 w-1/2 p-5 border-2 bg-green-200 border-black">
-        <form
-          onSubmit={() => {
-            alert('Hello');
-          }}
-          className="flex flex-col gap-5"
-        >
-          <SortableContext
+    // <DndContext
+    //   sensors={sensors}
+    //   collisionDetection={closestCorners}
+    //   onDragEnd={handleDragEnd}
+    // >
+    <div className="h-1/2 w-1/2 p-5 border-2 bg-green-200 border-black">
+      <form
+        onSubmit={() => {
+          alert('Hello');
+        }}
+        className="flex flex-col gap-5"
+      >
+        {/* <SortableContext
             items={finalFormFields}
             strategy={verticalListSortingStrategy}
-          >
-            {finalFormFields.map((field) => (
-              <FormField field={field} key={field.id} />
-            ))}
+          > */}
+        {finalFormFields.map((field) => (
+          <FormField
+            field={field}
+            key={field.id}
+            handleDeleteField={handleDeleteField}
+          />
+        ))}
 
-            {finalFormFields.length > 0 && (
-              <Button type="submit" className="w-1/3 ml-auto">
-                Submit
-              </Button>
-            )}
-          </SortableContext>
-        </form>
-      </div>
-    </DndContext>
+        {finalFormFields.length > 0 && (
+          <Button type="submit" className="w-1/3 ml-auto">
+            Submit
+          </Button>
+        )}
+        {/* </SortableContext> */}
+      </form>
+    </div>
+    // </DndContext>
   );
 };
 export default FinalForm;
