@@ -3,6 +3,7 @@ import Temp from '@/components/TimeTableGenerator';
 import Home from '@/Home';
 import Accordian from '@/interview-challenge/Accordian';
 import FormBuilder from '@/interview-challenge/form-builder/FormBuilder';
+import ImageSlider from '@/interview-challenge/ImageSlider';
 import InfiniteScroll from '@/interview-challenge/InfiniteScroll';
 import Practice1 from '@/interview-challenge/Practice1';
 import Practice2 from '@/interview-challenge/Practice2';
@@ -79,6 +80,10 @@ export const router = createBrowserRouter([
       {
         path: '/temp',
         element: <Temp />,
+      },
+      {
+        path: '/image-slider',
+        element: <ImageSlider />,
       },
       // react topic
       {
