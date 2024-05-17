@@ -48,7 +48,6 @@ const DialogComponent = ({
     }));
   }, [selectedInputType]);
 
-  console.log('inputDetails', inputDetails);
   const [optionValue, setOptionValue] = useState<string>('');
 
   const dialogContent = () => {
@@ -188,7 +187,7 @@ const DialogComponent = ({
                   }))
                 }
               />
-              <Label>Enter placeholder for input </Label>
+              {/* <Label>Enter placeholder for input </Label>
               <Input
                 name="placeholder"
                 placeholder="Enter placeholder"
@@ -199,7 +198,7 @@ const DialogComponent = ({
                     placeholder: e.target.value,
                   }))
                 }
-              />
+              /> */}
 
               {/* VALIDATIONS  */}
               <div>

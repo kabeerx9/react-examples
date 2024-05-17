@@ -1,4 +1,3 @@
-import { Button } from '@/components/ui/button';
 import { InputDetails } from './FormBuilder';
 
 // import {
@@ -17,6 +16,7 @@ import { InputDetails } from './FormBuilder';
 //   verticalListSortingStrategy,
 // } from '@dnd-kit/sortable';
 import FormField from './FormField';
+import { Card, CardContent, CardHeader } from '@/components/ui/card';
 
 interface FinalFormProps {
   finalFormFields: InputDetails[];
@@ -58,13 +58,11 @@ const FinalForm = ({ finalFormFields, setFinalFormFields }: FinalFormProps) => {
     //   collisionDetection={closestCorners}
     //   onDragEnd={handleDragEnd}
     // >
-    <div className="h-1/2 w-1/2 p-5 border-2 bg-green-200 border-black">
-      <form
-        onSubmit={() => {
-          alert('Hello');
-        }}
-        className="flex flex-col gap-5"
-      >
+    <Card className="w-full h-full p-5 border-2 bg-white border-black">
+      <CardHeader>
+        You can drag and drop to change the order of the form items you added.
+      </CardHeader>
+      <CardContent className="space-y-3">
         {/* <SortableContext
             items={finalFormFields}
             strategy={verticalListSortingStrategy}
@@ -76,15 +74,9 @@ const FinalForm = ({ finalFormFields, setFinalFormFields }: FinalFormProps) => {
             handleDeleteField={handleDeleteField}
           />
         ))}
-
-        {finalFormFields.length > 0 && (
-          <Button type="submit" className="w-1/3 ml-auto">
-            Submit
-          </Button>
-        )}
         {/* </SortableContext> */}
-      </form>
-    </div>
+      </CardContent>
+    </Card>
     // </DndContext>
   );
 };
