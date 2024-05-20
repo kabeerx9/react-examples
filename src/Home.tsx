@@ -6,15 +6,17 @@ import { LoaderIcon } from 'lucide-react';
 
 const Home = () => {
   return (
-    <div className="w-full h-full overflow-hidden pb-10">
+    <div className="flex flex-col w-full h-screen">
       <Navbar />
-      <div className="flex w-full h-full overflow-auto">
-        <div className="w-[25%] ">
+      <div className="flex flex-1 overflow-hidden">
+        <div className="w-[25%] overflow-y-auto">
           <Sidebar />
         </div>
-        <Suspense fallback={<LoaderIcon />}>
-          <Outlet />
-        </Suspense>
+        <div className="flex-1 overflow-y-auto">
+          <Suspense fallback={<LoaderIcon />}>
+            <Outlet />
+          </Suspense>
+        </div>
       </div>
     </div>
   );

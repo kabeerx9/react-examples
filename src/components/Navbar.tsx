@@ -1,3 +1,75 @@
+// import {
+//   DropdownMenu,
+//   DropdownMenuContent,
+//   DropdownMenuItem,
+//   DropdownMenuLabel,
+//   DropdownMenuSeparator,
+//   DropdownMenuTrigger,
+// } from '@/components/ui/dropdown-menu';
+// import { useAppSelector } from '@/hooks';
+// import { cn } from '@/lib/utils';
+// import { useLocation, useNavigate } from 'react-router-dom';
+// import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar';
+
+// const ShowTodosFromRedux = () => {
+//   const todos = useAppSelector((state) => state.todo.data);
+
+//   return (
+//     <DropdownMenu>
+//       <DropdownMenuTrigger>Todos</DropdownMenuTrigger>
+//       <DropdownMenuContent>
+//         <DropdownMenuLabel>Just showing redux things</DropdownMenuLabel>
+//         <DropdownMenuSeparator />
+//         {todos?.map((todo) => (
+//           <DropdownMenuItem
+//             key={todo.id}
+//             className={cn('bg-green-400', !todo.completed && 'bg-red-400')}
+//           >
+//             {todo.text}
+//           </DropdownMenuItem>
+//         ))}
+//       </DropdownMenuContent>
+//     </DropdownMenu>
+//   );
+// };
+
+// const Navbar = () => {
+//   const navigate = useNavigate();
+//   const location = useLocation();
+//   return (
+//     <nav className="w-full p-2 h-16 bg-red-400">
+//       <div className="flex justify-between">
+//         <div
+//           className="border-2 border-black p-2 rounded-lg bg-green-200 cursor-pointer"
+//           onClick={() => navigate('/')}
+//         >
+//           Home
+//         </div>
+
+//         {/* IF I AM ON PRACTICE 6 SHOW TODO FROM REDUX TOOLKIT */}
+//         {location.pathname === '/practice6' && <ShowTodosFromRedux />}
+
+//         {/* PROFILE SECTION */}
+//         <DropdownMenu>
+//           <DropdownMenuTrigger>
+//             <Avatar>
+//               <AvatarImage src="https://avatars.githubusercontent.com/u/89746908?v=4" />
+//               <AvatarFallback>KJ</AvatarFallback>
+//             </Avatar>
+//           </DropdownMenuTrigger>
+//           <DropdownMenuContent>
+//             <DropdownMenuLabel>About Me</DropdownMenuLabel>
+//             <DropdownMenuSeparator />
+//             <DropdownMenuItem>Download Resume</DropdownMenuItem>
+//             <DropdownMenuItem>Contact Me</DropdownMenuItem>
+//           </DropdownMenuContent>
+//         </DropdownMenu>
+//       </div>
+//     </nav>
+//   );
+// };
+
+// export default Navbar;
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -8,27 +80,29 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { useAppSelector } from '@/hooks';
 import { cn } from '@/lib/utils';
-import {
-  interviewChallengeRoutes,
-  learnTopicsRoutes,
-  practiceRoutes,
-} from '@/routes/routes';
-import { useTranslation } from 'react-i18next';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar';
 
 const ShowTodosFromRedux = () => {
   const todos = useAppSelector((state) => state.todo.data);
 
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger>Todos</DropdownMenuTrigger>
+      <DropdownMenuTrigger className="text-white hover:text-blue-200">
+        Todos
+      </DropdownMenuTrigger>
       <DropdownMenuContent>
         <DropdownMenuLabel>Just showing redux things</DropdownMenuLabel>
         <DropdownMenuSeparator />
         {todos?.map((todo) => (
           <DropdownMenuItem
             key={todo.id}
-            className={cn('bg-green-400', !todo.completed && 'bg-red-400')}
+            className={cn(
+              'text-gray-700',
+              todo.completed
+                ? 'bg-green-100 hover:bg-green-200'
+                : 'bg-red-100 hover:bg-red-200',
+            )}
           >
             {todo.text}
           </DropdownMenuItem>
@@ -41,53 +115,35 @@ const ShowTodosFromRedux = () => {
 const Navbar = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const { t } = useTranslation();
+
   return (
-    <nav className="w-full p-2 h-16 bg-red-400">
-      <div className="flex justify-between">
+    <nav className="w-full p-4 h-16 bg-gradient-to-r from-blue-800 to-blue-600 flex items-center">
+      <div className="flex justify-between w-full">
         <div
-          className="border-2 border-black p-2 rounded-lg bg-green-200 cursor-pointer"
+          className="text-white font-semibold px-4 py-2 rounded-lg bg-blue-600 hover:bg-blue-700 cursor-pointer transition-colors duration-300"
           onClick={() => navigate('/')}
         >
           Home
         </div>
-        <DropdownMenu>
-          <DropdownMenuTrigger className="bg-gray-200 p-2 rounded-lg">
-            {t('practice')}
-          </DropdownMenuTrigger>
-          <DropdownMenuContent>
-            <DropdownMenuLabel>Simple challenges </DropdownMenuLabel>
-            <DropdownMenuSeparator />
-            {practiceRoutes.map((route, ind) => (
-              <DropdownMenuItem key={ind} onClick={() => navigate(route.path)}>
-                {route.name}
-              </DropdownMenuItem>
-            ))}
-            {interviewChallengeRoutes.map((route, ind) => (
-              <DropdownMenuItem key={ind} onClick={() => navigate(route.path)}>
-                {route.name}
-              </DropdownMenuItem>
-            ))}
-          </DropdownMenuContent>
-        </DropdownMenu>
-
         {/* IF I AM ON PRACTICE 6 SHOW TODO FROM REDUX TOOLKIT */}
         {location.pathname === '/practice6' && <ShowTodosFromRedux />}
-
-        {/* THIS IS THE MENU FOR REACT SIMPLE TOPICS */}
-
+        {/* PROFILE SECTION */}
         <DropdownMenu>
-          <DropdownMenuTrigger className="bg-gray-200 p-2 rounded-lg">
-            {t('topics')}
+          <DropdownMenuTrigger>
+            <Avatar>
+              <AvatarImage src="https://avatars.githubusercontent.com/u/89746908?v=4" />
+              <AvatarFallback>KJ</AvatarFallback>
+            </Avatar>
           </DropdownMenuTrigger>
           <DropdownMenuContent>
-            <DropdownMenuLabel>React Things</DropdownMenuLabel>
+            <DropdownMenuLabel>About Me</DropdownMenuLabel>
             <DropdownMenuSeparator />
-            {learnTopicsRoutes.map((route, ind) => (
-              <DropdownMenuItem key={ind} onClick={() => navigate(route.path)}>
-                {route.name}
-              </DropdownMenuItem>
-            ))}
+            <DropdownMenuItem className="text-gray-700 hover:bg-gray-100">
+              Download Resume
+            </DropdownMenuItem>
+            <DropdownMenuItem className="text-gray-700 hover:bg-gray-100">
+              Contact Me
+            </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       </div>
