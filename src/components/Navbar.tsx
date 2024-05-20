@@ -8,6 +8,11 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { useAppSelector } from '@/hooks';
 import { cn } from '@/lib/utils';
+import {
+  interviewChallengeRoutes,
+  learnTopicsRoutes,
+  practiceRoutes,
+} from '@/routes/routes';
 import { useTranslation } from 'react-i18next';
 import { useLocation, useNavigate } from 'react-router-dom';
 
@@ -53,42 +58,16 @@ const Navbar = () => {
           <DropdownMenuContent>
             <DropdownMenuLabel>Simple challenges </DropdownMenuLabel>
             <DropdownMenuSeparator />
-            <DropdownMenuItem onClick={() => navigate('/practice1')}>
-              Practice 1
-            </DropdownMenuItem>
-            <DropdownMenuItem onClick={() => navigate('/practice2')}>
-              Practice 2
-            </DropdownMenuItem>
-            <DropdownMenuItem onClick={() => navigate('/practice3')}>
-              Practice 3
-            </DropdownMenuItem>
-            <DropdownMenuItem onClick={() => navigate('/practice4')}>
-              Practice 4
-            </DropdownMenuItem>
-            <DropdownMenuItem onClick={() => navigate('/practice5')}>
-              Practice 5
-            </DropdownMenuItem>
-            <DropdownMenuItem onClick={() => navigate('/practice6')}>
-              Practice 6
-            </DropdownMenuItem>
-            <DropdownMenuItem onClick={() => navigate('/practice7')}>
-              Practice 7
-            </DropdownMenuItem>
-            <DropdownMenuItem onClick={() => navigate('/infinitescroll')}>
-              Infinite Scroll
-            </DropdownMenuItem>
-            <DropdownMenuItem onClick={() => navigate('/form-builder')}>
-              Form Builder
-            </DropdownMenuItem>
-            <DropdownMenuItem onClick={() => navigate('/accordian')}>
-              Accordian
-            </DropdownMenuItem>
-            <DropdownMenuItem onClick={() => navigate('/sticky-notes')}>
-              Sticky Notes
-            </DropdownMenuItem>
-            <DropdownMenuItem onClick={() => navigate('/stop-watch')}>
-              Stop Watch
-            </DropdownMenuItem>
+            {practiceRoutes.map((route, ind) => (
+              <DropdownMenuItem key={ind} onClick={() => navigate(route.path)}>
+                {route.name}
+              </DropdownMenuItem>
+            ))}
+            {interviewChallengeRoutes.map((route, ind) => (
+              <DropdownMenuItem key={ind} onClick={() => navigate(route.path)}>
+                {route.name}
+              </DropdownMenuItem>
+            ))}
           </DropdownMenuContent>
         </DropdownMenu>
 
@@ -102,20 +81,13 @@ const Navbar = () => {
             {t('topics')}
           </DropdownMenuTrigger>
           <DropdownMenuContent>
-            <DropdownMenuLabel>Basic Things </DropdownMenuLabel>
+            <DropdownMenuLabel>React Things</DropdownMenuLabel>
             <DropdownMenuSeparator />
-            <DropdownMenuItem onClick={() => navigate('/error-boundary')}>
-              Error Boundary
-            </DropdownMenuItem>
-            <DropdownMenuItem onClick={() => navigate('/event-bubbling')}>
-              Event Bubbling
-            </DropdownMenuItem>
-            <DropdownMenuItem onClick={() => navigate('/effect-learn')}>
-              Effect Learn
-            </DropdownMenuItem>
-            <DropdownMenuItem onClick={() => navigate('/localization')}>
-              Localization
-            </DropdownMenuItem>
+            {learnTopicsRoutes.map((route, ind) => (
+              <DropdownMenuItem key={ind} onClick={() => navigate(route.path)}>
+                {route.name}
+              </DropdownMenuItem>
+            ))}
           </DropdownMenuContent>
         </DropdownMenu>
       </div>
