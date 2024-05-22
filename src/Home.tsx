@@ -18,7 +18,7 @@ const Home = () => {
         <div
           className={cn(
             'flex overflow-y-auto transition-all duration-300 ease-in-out',
-            isDesktopSidebarOpen ? 'w-[25%]' : 'w-0',
+            isDesktopSidebarOpen ? 'w-[20%]' : 'w-0',
           )}
         >
           <div className={cn('w-full')}>
