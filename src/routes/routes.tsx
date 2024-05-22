@@ -1,3 +1,4 @@
+import LiveChat from '@/interview-challenge/LiveChat';
 import {
   Accordian,
   EffectLearn,
@@ -98,6 +99,11 @@ const interviewChallengeRoutes: SingleRoute[] = [
     path: '/image-slider',
     element: <ImageSlider />,
     name: 'Image Slider',
+  },
+  {
+    path: '/live-chat',
+    element: <LiveChat />,
+    name: 'Live Chat',
   },
 ];
 

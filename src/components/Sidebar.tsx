@@ -1,7 +1,7 @@
 import {
-  practiceRoutes,
   interviewChallengeRoutes,
   learnTopicsRoutes,
+  practiceRoutes,
 } from '@/routes/routes';
 import { useNavigate } from 'react-router-dom';
 
@@ -10,8 +10,8 @@ const Sidebar = () => {
   return (
     <div className="relative w-full h-full bg-gray-800">
       <div className="p-4">
-        <div className="text-lg font-bold text-blue-600 mb-4">
-          Sidebar Component
+        <div className="flex justify-between items-center text-lg font-bold text-blue-600 mb-4">
+          <span>Sidebar Component</span>
         </div>
         <div>
           <div className="text-blue-500 font-semibold mb-2">Practice:</div>
