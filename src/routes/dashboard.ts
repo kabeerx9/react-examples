@@ -1,8 +1,21 @@
 import React from 'react';
 
 const App = React.lazy(() => import('@/App'));
-const Temp = React.lazy(() => import('@/components/TimeTableGenerator'));
 const Home = React.lazy(() => import('@/Home'));
+
+// PRACTICE ONES:
+
+const Practice1 = React.lazy(() => import('@/interview-challenge/Practice1'));
+const Practice2 = React.lazy(() => import('@/interview-challenge/Practice2'));
+const Practice3 = React.lazy(() => import('@/interview-challenge/Practice3'));
+const Practice4 = React.lazy(() => import('@/interview-challenge/Practice4'));
+const Practice5 = React.lazy(() => import('@/interview-challenge/Practice5'));
+const Practice6 = React.lazy(() => import('@/interview-challenge/Practice6'));
+const Practice7 = React.lazy(() => import('@/interview-challenge/Practice7'));
+
+// INTERVIEW CHALLENGES:
+
+const Temp = React.lazy(() => import('@/components/TimeTableGenerator'));
 const Accordian = React.lazy(() => import('@/interview-challenge/Accordian'));
 const FormBuilder = React.lazy(
   () => import('@/interview-challenge/form-builder/FormBuilder'),
@@ -13,17 +26,20 @@ const ImageSlider = React.lazy(
 const InfiniteScroll = React.lazy(
   () => import('@/interview-challenge/InfiniteScroll'),
 );
-const Practice1 = React.lazy(() => import('@/interview-challenge/Practice1'));
-const Practice2 = React.lazy(() => import('@/interview-challenge/Practice2'));
-const Practice3 = React.lazy(() => import('@/interview-challenge/Practice3'));
-const Practice4 = React.lazy(() => import('@/interview-challenge/Practice4'));
-const Practice5 = React.lazy(() => import('@/interview-challenge/Practice5'));
-const Practice6 = React.lazy(() => import('@/interview-challenge/Practice6'));
-const Practice7 = React.lazy(() => import('@/interview-challenge/Practice7'));
+
 const StickyNotes = React.lazy(
   () => import('@/interview-challenge/sticky-notes'),
 );
 const StopWatch = React.lazy(() => import('@/interview-challenge/StopWatch'));
+
+const LiveChat = React.lazy(() => import('@/interview-challenge/LiveChat'));
+
+const AutoCompleteAndSearch = React.lazy(
+  () => import('@/interview-challenge/AutoCompleteAndSearch'),
+);
+
+// LEARNING TOPICS:
+
 const EffectLearn = React.lazy(() => import('@/learning/effect-learn'));
 const ReactErrorBoundary = React.lazy(
   () => import('@/learning/error-handling/usingErrorBoundaries'),
@@ -54,4 +70,6 @@ export {
   StickyNotes,
   StopWatch,
   Temp,
+  LiveChat,
+  AutoCompleteAndSearch,
 };

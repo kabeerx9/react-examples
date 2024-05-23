@@ -1,4 +1,3 @@
-import LiveChat from '@/interview-challenge/LiveChat';
 import {
   Accordian,
   EffectLearn,
@@ -18,6 +17,8 @@ import {
   StickyNotes,
   StopWatch,
   Temp,
+  LiveChat,
+  AutoCompleteAndSearch,
 } from './dashboard';
 
 interface SingleRoute {
@@ -104,6 +105,11 @@ const interviewChallengeRoutes: SingleRoute[] = [
     path: '/live-chat',
     element: <LiveChat />,
     name: 'Live Chat',
+  },
+  {
+    path: '/autocomplete-search',
+    element: <AutoCompleteAndSearch />,
+    name: 'Auto-Complete Search',
   },
 ];
 

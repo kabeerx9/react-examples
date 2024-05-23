@@ -1,12 +1,15 @@
+import { cn } from '@/lib/utils';
 import {
   interviewChallengeRoutes,
   learnTopicsRoutes,
   practiceRoutes,
 } from '@/routes/routes';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const Sidebar = () => {
   const navigate = useNavigate();
+  const { pathname } = useLocation();
+  console.log('pathname', pathname);
   return (
     <div className="relative w-full h-full bg-gray-800">
       <div className="p-4">
@@ -19,7 +22,10 @@ const Sidebar = () => {
             {practiceRoutes.map((route, ind) => (
               <div
                 key={ind}
-                className="text-white hover:text-blue-400 cursor-pointer mb-1"
+                className={cn(
+                  'text-white hover:text-blue-400 cursor-pointer mb-1',
+                  pathname === route.path && 'text-blue-400',
+                )}
                 onClick={() => navigate(route.path)}
               >
                 {route.name}
@@ -35,7 +41,10 @@ const Sidebar = () => {
             {interviewChallengeRoutes.map((route, ind) => (
               <div
                 key={ind}
-                className="text-white hover:text-blue-400 cursor-pointer mb-1"
+                className={cn(
+                  'text-white hover:text-blue-400 cursor-pointer mb-1',
+                  pathname === route.path && 'text-blue-400',
+                )}
                 onClick={() => navigate(route.path)}
               >
                 {route.name}
@@ -49,7 +58,10 @@ const Sidebar = () => {
             {learnTopicsRoutes.map((route, ind) => (
               <div
                 key={ind}
-                className="text-white hover:text-blue-400 cursor-pointer mb-1"
+                className={cn(
+                  'text-white hover:text-blue-400 cursor-pointer mb-1',
+                  pathname === route.path && 'text-blue-400',
+                )}
                 onClick={() => navigate(route.path)}
               >
                 {route.name}
