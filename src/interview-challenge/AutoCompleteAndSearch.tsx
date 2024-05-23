@@ -38,18 +38,20 @@ const AutoCompleteAndSearch = () => {
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
             />
-            <div className="w-full flex flex-col max-h-80 overflow-y-auto bg-white border-2 border-black">
-              {searchList.map((item) => (
-                <div className="w-full h-10 flex items-center justify-start px-5 hover:bg-gray-200">
-                  {item.value}
-                </div>
-              ))}
-              {searchList.length === 0 && (
-                <div className="w-full h-10 flex items-center justify-start px-5">
-                  No data found
-                </div>
-              )}
-            </div>
+            {searchTerm.length > 0 && (
+              <div className="w-full flex flex-col max-h-80 overflow-y-auto bg-white border-2 border-black">
+                {searchList.map((item) => (
+                  <div className="w-full h-10 flex items-center justify-start px-5 hover:bg-gray-200">
+                    {item.value}
+                  </div>
+                ))}
+                {searchList.length === 0 && (
+                  <div className="w-full h-10 flex items-center justify-start px-5">
+                    No data found
+                  </div>
+                )}
+              </div>
+            )}
           </div>
         </div>
       </div>
