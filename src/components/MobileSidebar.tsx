@@ -1,3 +1,6 @@
+import React from 'react';
+
+import { Sheet, SheetContent } from '@/components/ui/sheet';
 import { cn } from '@/lib/utils';
 import {
   interviewChallengeRoutes,
@@ -6,17 +9,23 @@ import {
 } from '@/routes/routes';
 import { useLocation, useNavigate } from 'react-router-dom';
 
-const Sidebar = () => {
-  const navigate = useNavigate();
-  const { pathname } = useLocation();
+interface MobileSidebarProps {
+  isMobileSidebarOpen: boolean;
+  setIsMobileSidebarOpen: React.Dispatch<React.SetStateAction<boolean>>;
+}
 
+const MobileSidebar = ({
+  isMobileSidebarOpen,
+  setIsMobileSidebarOpen,
+}: MobileSidebarProps) => {
+  const { pathname } = useLocation();
+  const navigate = useNavigate();
 
   return (
-    <div className="relative w-full h-full bg-gray-800">
-      <div className="p-4">
-        <div className="flex justify-between items-center text-lg font-bold text-blue-600 mb-4">
-          <span>Sidebar Component</span>
-        </div>
+    <Sheet open={isMobileSidebarOpen} onOpenChange={setIsMobileSidebarOpen}>
+      <SheetContent side={'left'} className="w-3/4 bg-gray-800 p-4">
+        {/* PRACTICE ROUTES  */}
+
         <div>
           <div className="text-blue-500 font-semibold mb-2">Practice:</div>
           <div className="pl-5">
@@ -27,17 +36,22 @@ const Sidebar = () => {
                   'text-white hover:text-blue-400 cursor-pointer mb-1',
                   pathname === route.path && 'text-blue-400',
                 )}
-                onClick={() => navigate(route.path)}
+                onClick={() => {
+                  setTimeout(() => {
+                    setIsMobileSidebarOpen(false);
+                  }, 0);
+                  navigate(route.path);
+                }}
               >
                 {route.name}
               </div>
             ))}
           </div>
         </div>
-        <div className="mt-6">
-          <div className="text-blue-500 font-semibold mb-2">
-            Interview Challenge:
-          </div>
+
+        {/* INTERVIEW ROUTES  */}
+        <div>
+          <div className="text-blue-500 font-semibold mb-2">Practice:</div>
           <div className="pl-5">
             {interviewChallengeRoutes.map((route, ind) => (
               <div
@@ -46,15 +60,23 @@ const Sidebar = () => {
                   'text-white hover:text-blue-400 cursor-pointer mb-1',
                   pathname === route.path && 'text-blue-400',
                 )}
-                onClick={() => navigate(route.path)}
+                onClick={() => {
+                  setTimeout(() => {
+                    setIsMobileSidebarOpen(false);
+                  }, 0);
+                  navigate(route.path);
+                }}
               >
                 {route.name}
               </div>
             ))}
           </div>
         </div>
-        <div className="mt-6">
-          <div className="text-blue-500 font-semibold mb-2">Topics:</div>
+
+        {/* REACT TOPIC ROUTES  */}
+
+        <div>
+          <div className="text-blue-500 font-semibold mb-2">Practice:</div>
           <div className="pl-5">
             {learnTopicsRoutes.map((route, ind) => (
               <div
@@ -63,18 +85,21 @@ const Sidebar = () => {
                   'text-white hover:text-blue-400 cursor-pointer mb-1',
                   pathname === route.path && 'text-blue-400',
                 )}
-                onClick={() => navigate(route.path)}
+                onClick={() => {
+                  setTimeout(() => {
+                    setIsMobileSidebarOpen(false);
+                  }, 0);
+                  navigate(route.path);
+                }}
               >
                 {route.name}
               </div>
             ))}
           </div>
         </div>
-      </div>
-      {/* THIS DIV WILL BE THE RIGHT LINE OF THE SIDEBAR TO CONTROL WIDTH LATER ON */}
-      <div className="absolute w-1 h-full bg-blue-800 top-0 right-0 cursor-ew-resize" />
-    </div>
+      </SheetContent>
+    </Sheet>
   );
 };
 
-export default Sidebar;
+export default MobileSidebar;

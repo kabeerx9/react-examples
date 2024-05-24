@@ -8,9 +8,15 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { useAppSelector } from '@/hooks';
 import { cn } from '@/lib/utils';
-import { SidebarCloseIcon, SidebarOpenIcon } from 'lucide-react';
+import {
+  MenuIcon,
+  MenuSquareIcon,
+  SidebarCloseIcon,
+  SidebarOpenIcon,
+} from 'lucide-react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar';
+import { useMediaQuery } from 'usehooks-ts';
 
 const ShowTodosFromRedux = () => {
   const todos = useAppSelector((state) => state.todo.data);
@@ -44,14 +50,20 @@ const ShowTodosFromRedux = () => {
 interface NavbarProps {
   isDesktopSidebarOpen: boolean;
   setIsDesktopSidebarOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  isMobileSidebarOpen: boolean;
+  setIsMobileSidebarOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const Navbar = ({
   isDesktopSidebarOpen,
   setIsDesktopSidebarOpen,
+  isMobileSidebarOpen,
+  setIsMobileSidebarOpen,
 }: NavbarProps) => {
   const navigate = useNavigate();
   const location = useLocation();
+
+  const isMobile = useMediaQuery('(max-width: 768px)');
 
   return (
     <nav className="w-full p-4 h-16 bg-gradient-to-r from-blue-800 to-blue-600 flex items-center">
@@ -63,19 +75,16 @@ const Navbar = ({
           >
             Home
           </div>
-          {isDesktopSidebarOpen ? (
-            <SidebarOpenIcon
-              onClick={() => {
-                setIsDesktopSidebarOpen((prev) => !prev);
-              }}
-              className="cursor-pointer text-red-200 "
+
+          {isMobile ? (
+            <MobileSidebarIcon
+              isMobileSidebarOpen={isMobileSidebarOpen}
+              setIsMobileSidebarOpen={setIsMobileSidebarOpen}
             />
           ) : (
-            <SidebarCloseIcon
-              onClick={() => {
-                setIsDesktopSidebarOpen((prev) => !prev);
-              }}
-              className="cursor-pointer text-red-200 "
+            <DesktopSidebarIcon
+              isDesktopSidebarOpen={isDesktopSidebarOpen}
+              setIsDesktopSidebarOpen={setIsDesktopSidebarOpen}
             />
           )}
         </div>
@@ -106,3 +115,55 @@ const Navbar = ({
 };
 
 export default Navbar;
+
+interface DesktopSidebarIconProps {
+  isDesktopSidebarOpen: boolean;
+  setIsDesktopSidebarOpen: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+const DesktopSidebarIcon = ({
+  isDesktopSidebarOpen,
+  setIsDesktopSidebarOpen,
+}: DesktopSidebarIconProps) => {
+  return isDesktopSidebarOpen ? (
+    <SidebarOpenIcon
+      onClick={() => {
+        setIsDesktopSidebarOpen((prev) => !prev);
+      }}
+      className="cursor-pointer text-red-200 "
+    />
+  ) : (
+    <SidebarCloseIcon
+      onClick={() => {
+        setIsDesktopSidebarOpen((prev) => !prev);
+      }}
+      className="cursor-pointer text-red-200 "
+    />
+  );
+};
+
+interface MobileSidebarIconProps {
+  isMobileSidebarOpen: boolean;
+  setIsMobileSidebarOpen: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+const MobileSidebarIcon = ({
+  isMobileSidebarOpen,
+  setIsMobileSidebarOpen,
+}: MobileSidebarIconProps) => {
+  return isMobileSidebarOpen ? (
+    <MenuIcon
+      onClick={() => {
+        setIsMobileSidebarOpen((prev) => !prev);
+      }}
+      className="cursor-pointer text-red-200 "
+    />
+  ) : (
+    <MenuSquareIcon
+      onClick={() => {
+        setIsMobileSidebarOpen((prev) => !prev);
+      }}
+      className="cursor-pointer text-red-200 "
+    />
+  );
+};
