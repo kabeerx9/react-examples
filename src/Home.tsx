@@ -13,6 +13,12 @@ const Home = () => {
 
   const isMobile = useMediaQuery('(max-width: 768px)');
 
+  const [sidebarWidth, setSidebarWidth] = useState(384);
+
+  const handleSidebarWidthChange = (width: number) => {
+    setSidebarWidth(width);
+  };
+
   return (
     <div className="flex flex-col w-full h-screen">
       <Navbar
@@ -26,11 +32,11 @@ const Home = () => {
           <div
             className={cn(
               'flex overflow-y-auto transition-all duration-300 ease-in-out',
-              isDesktopSidebarOpen ? 'w-[20%]' : 'w-0',
+              isDesktopSidebarOpen ? `w-[${sidebarWidth}px]` : 'w-0',
             )}
           >
             <div className={cn('w-full')}>
-              <Sidebar />
+              <Sidebar onWidthChange={handleSidebarWidthChange} />
             </div>
           </div>
         ) : (
