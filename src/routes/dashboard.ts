@@ -38,6 +38,10 @@ const AutoCompleteAndSearch = React.lazy(
   () => import('@/interview-challenge/AutoCompleteAndSearch'),
 );
 
+const SelectableGrid = React.lazy(
+  () => import('@/interview-challenge/SelectableGrid'),
+);
+
 // LEARNING TOPICS:
 
 const EffectLearn = React.lazy(() => import('@/learning/effect-learn'));
@@ -72,4 +76,5 @@ export {
   Temp,
   LiveChat,
   AutoCompleteAndSearch,
+  SelectableGrid,
 };

@@ -19,6 +19,7 @@ import {
   Temp,
   LiveChat,
   AutoCompleteAndSearch,
+  SelectableGrid,
 } from './dashboard';
 
 interface SingleRoute {
@@ -110,6 +111,11 @@ const interviewChallengeRoutes: SingleRoute[] = [
     path: '/autocomplete-search',
     element: <AutoCompleteAndSearch />,
     name: 'Auto-Complete Search',
+  },
+  {
+    path: '/selectable-grid',
+    element: <SelectableGrid />,
+    name: 'Selectable Grid',
   },
 ];
 
