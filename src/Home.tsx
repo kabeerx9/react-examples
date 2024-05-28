@@ -4,16 +4,15 @@ import { Outlet } from 'react-router-dom';
 import Navbar from './components/navbar/Navbar';
 import Sidebar from './components/Sidebar';
 import { cn } from './lib/utils';
-import { useMediaQuery } from 'usehooks-ts';
 import MobileSidebar from './components/MobileSidebar';
 
 const Home = () => {
   const [isDesktopSidebarOpen, setIsDesktopSidebarOpen] = useState(true);
   const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
 
-  const isMobile = useMediaQuery('(max-width: 768px)');
-
   const [sidebarWidth, setSidebarWidth] = useState(384);
+
+  const isMobile = sidebarWidth <= 768;
 
   const handleSidebarWidthChange = (width: number) => {
     setSidebarWidth(width);
