@@ -1,13 +1,12 @@
 import { useLocation, useNavigate } from 'react-router-dom';
-import { useMediaQuery } from 'usehooks-ts';
 
+import { useEffect, useState } from 'react';
+import { Button } from '../ui/button';
 import CodeDialog from './_components/CodeDialog';
 import DesktopSidebarIcon from './_components/DesktopSidebarIcon';
 import MobileSidebarIcon from './_components/MobileSidebarIcon';
 import ProfileDropdown from './_components/ProfileDropdown';
 import ShowTodosFromRedux from './_components/ShowTodosFromRedux';
-import { useEffect, useState } from 'react';
-import { Button } from '../ui/button';
 
 interface NavbarProps {
   isDesktopSidebarOpen: boolean;
