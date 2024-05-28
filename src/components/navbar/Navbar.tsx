@@ -6,6 +6,7 @@ import DesktopSidebarIcon from './_components/DesktopSidebarIcon';
 import MobileSidebarIcon from './_components/MobileSidebarIcon';
 import ProfileDropdown from './_components/ProfileDropdown';
 import ShowTodosFromRedux from './_components/ShowTodosFromRedux';
+import { useState } from 'react';
 
 interface NavbarProps {
   isDesktopSidebarOpen: boolean;
@@ -24,6 +25,8 @@ const Navbar = ({
   const location = useLocation();
 
   const isMobile = useMediaQuery('(max-width: 768px)');
+
+  const [isCodeLoading, setIsCodeLoading] = useState(true);
 
   return (
     <nav className="w-full p-4 h-16 bg-gradient-to-r from-blue-800 to-blue-600 flex items-center">
@@ -56,7 +59,10 @@ const Navbar = ({
 
         {/* OPEN DIALOG TO SHOW COMPONENT CODE  */}
 
-        <CodeDialog />
+        <CodeDialog
+          isCodeLoading={isCodeLoading}
+          setIsCodeLoading={setIsCodeLoading}
+        />
       </div>
     </nav>
   );

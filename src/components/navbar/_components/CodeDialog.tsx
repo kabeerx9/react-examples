@@ -16,17 +16,25 @@ import { useLocation } from 'react-router-dom';
 import SyntaxHighlighter from 'react-syntax-highlighter';
 import { atomOneDark } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 
-const CodeDialog = () => {
+interface CodeDialogProps {
+  isCodeLoading: boolean;
+  setIsCodeLoading: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+const CodeDialog = ({ isCodeLoading, setIsCodeLoading }: CodeDialogProps) => {
   const { toast } = useToast();
 
   const { pathname } = useLocation();
+  console.log('pathname', pathname);
 
   const getCodeString = async () => {
     try {
       const module = await (
         codeLoader[pathname] as () => Promise<{ default: string }>
       )();
+
       setCodeString(module.default);
+      setIsCodeLoading(false);
     } catch (error) {
       console.error(error);
     }
@@ -34,7 +42,7 @@ const CodeDialog = () => {
 
   useEffect(() => {
     getCodeString();
-  }, []);
+  }, [pathname]);
 
   const [codeString, setCodeString] = useState('');
 
@@ -42,7 +50,7 @@ const CodeDialog = () => {
 
   return (
     <Dialog>
-      <DialogTrigger>Open</DialogTrigger>
+      <DialogTrigger disabled={isCodeLoading}>Open</DialogTrigger>
       <DialogContent>
         <DialogHeader className="w-full h-full overflow-auto">
           <DialogTitle className="mt-5">
@@ -77,7 +85,7 @@ const CodeDialog = () => {
           </DialogTitle>
           <DialogDescription className="w-full h-96 overflow-auto">
             <SyntaxHighlighter
-              language="typescript"
+              language="jsx"
               style={atomOneDark}
               wrapLongLines={true}
             >
