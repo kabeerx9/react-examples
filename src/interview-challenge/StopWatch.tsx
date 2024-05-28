@@ -1,9 +1,10 @@
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import { useToast } from '@/components/ui/use-toast';
 import { useEffect, useState } from 'react';
-import { toast } from 'sonner';
 
 const StopWatch = () => {
+  const { toast } = useToast();
   const [seconds, setSeconds] = useState(0);
   const [minutes, setMinutes] = useState(0);
   const [hours, setHours] = useState(0);
@@ -12,11 +13,15 @@ const StopWatch = () => {
 
   const validationCheck = () => {
     if (seconds < 0 || minutes < 0 || hours < 0) {
-      toast.error('Time cannot be negative');
+      toast({
+        title: 'Time cannot be negative',
+      });
       return false;
     }
     if (seconds > 59 || minutes > 59 || hours > 59) {
-      toast.error('Time cannot be greater than 59');
+      toast({
+        title: 'Time cannot be greater than 59',
+      });
       return false;
     }
     return true;
@@ -49,7 +54,9 @@ const StopWatch = () => {
           setMinutes(0);
           setHours(0);
           setIsRunning(false);
-          toast.success('Time is up');
+          toast({
+            title: 'Time is up',
+          });
         }
       }
     }

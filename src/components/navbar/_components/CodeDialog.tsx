@@ -7,19 +7,38 @@ import {
   DialogTrigger,
 } from '@/components/ui/dialog';
 
-import * as selectableGridSource from '../../../interview-challenge/SelectableGrid.tsx?raw';
-
 import { Button } from '@/components/ui/button';
 import { useToast } from '@/components/ui/use-toast';
+import codeLoader from '@/routes/codeLoader';
 import { CheckCircle, CopyIcon } from 'lucide-react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import SyntaxHighlighter from 'react-syntax-highlighter';
 import { atomOneDark } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 
 const CodeDialog = () => {
   const { toast } = useToast();
+
+  const { pathname } = useLocation();
+
+  const getCodeString = async () => {
+    try {
+      const module = await (
+        codeLoader[pathname] as () => Promise<{ default: string }>
+      )();
+      setCodeString(module.default);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    getCodeString();
+  }, []);
+
+  const [codeString, setCodeString] = useState('');
+
   const [codeCopied, setCodeCopied] = useState(false);
-  const codeString2 = selectableGridSource.default;
 
   return (
     <Dialog>
@@ -41,7 +60,7 @@ const CodeDialog = () => {
                 <Button
                   className="inline-flex justify-between items-center gap-2"
                   onClick={() => {
-                    navigator.clipboard.writeText(codeString2);
+                    navigator.clipboard.writeText(codeString);
                     toast({
                       title: 'Code copied to clipboard',
                     });
@@ -62,7 +81,7 @@ const CodeDialog = () => {
               style={atomOneDark}
               wrapLongLines={true}
             >
-              {codeString2}
+              {codeString}
             </SyntaxHighlighter>
           </DialogDescription>
         </DialogHeader>
