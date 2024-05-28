@@ -6,7 +6,7 @@ import DesktopSidebarIcon from './_components/DesktopSidebarIcon';
 import MobileSidebarIcon from './_components/MobileSidebarIcon';
 import ProfileDropdown from './_components/ProfileDropdown';
 import ShowTodosFromRedux from './_components/ShowTodosFromRedux';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Button } from '../ui/button';
 
 interface NavbarProps {
@@ -25,7 +25,19 @@ const Navbar = ({
   const navigate = useNavigate();
   const location = useLocation();
 
-  const isMobile = useMediaQuery('(max-width: 768px)');
+  const [screenWidth, setScreenWidth] = useState(window.innerWidth);
+
+  useEffect(() => {
+    const handleResize = () => setScreenWidth(window.innerWidth);
+    window.addEventListener('resize', handleResize);
+
+    // Clean up the event listener on component unmount
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
+  const isMobile = screenWidth <= 768;
 
   const [isCodeLoading, setIsCodeLoading] = useState(true);
 
