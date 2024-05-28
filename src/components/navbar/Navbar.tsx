@@ -30,7 +30,7 @@ const Navbar = ({
   const [isCodeLoading, setIsCodeLoading] = useState(true);
 
   return (
-    <nav className="w-full p-4 h-16  flex items-center">
+    <nav className="w-full p-4 h-16 border-b border-black  flex items-center">
       <div className="flex justify-between w-full">
         <div className="flex justify-center items-center gap-5">
           <Button size={'sm'} onClick={() => navigate('/')}>

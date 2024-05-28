@@ -28,6 +28,7 @@ const CodeDialog = ({ isCodeLoading, setIsCodeLoading }: CodeDialogProps) => {
   console.log('pathname', pathname);
 
   const getCodeString = async () => {
+    setIsCodeLoading(true);
     try {
       const module = await (
         codeLoader[pathname] as () => Promise<{ default: string }>
@@ -89,7 +90,7 @@ const CodeDialog = ({ isCodeLoading, setIsCodeLoading }: CodeDialogProps) => {
           </DialogTitle>
           <DialogDescription className="w-full h-96 overflow-auto">
             <SyntaxHighlighter
-              language="jsx"
+              language="typescript"
               style={atomOneDark}
               wrapLongLines={true}
             >

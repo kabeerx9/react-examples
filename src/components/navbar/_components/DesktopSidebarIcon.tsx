@@ -14,14 +14,14 @@ const DesktopSidebarIcon = ({
       onClick={() => {
         setIsDesktopSidebarOpen((prev) => !prev);
       }}
-      className="cursor-pointer text-red-200 "
+      className="cursor-pointer"
     />
   ) : (
     <SidebarCloseIcon
       onClick={() => {
         setIsDesktopSidebarOpen((prev) => !prev);
       }}
-      className="cursor-pointer text-red-200 "
+      className="cursor-pointer"
     />
   );
 };

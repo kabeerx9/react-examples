@@ -14,14 +14,14 @@ const MobileSidebarIcon = ({
       onClick={() => {
         setIsMobileSidebarOpen((prev) => !prev);
       }}
-      className="cursor-pointer text-red-200 "
+      className="cursor-pointer"
     />
   ) : (
     <MenuSquareIcon
       onClick={() => {
         setIsMobileSidebarOpen((prev) => !prev);
       }}
-      className="cursor-pointer text-red-200 "
+      className="cursor-pointer"
     />
   );
 };
