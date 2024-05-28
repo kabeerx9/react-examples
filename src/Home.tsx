@@ -47,7 +47,13 @@ const Home = () => {
         )}
 
         <div className="flex-1 overflow-y-auto">
-          <Suspense fallback={<LoaderIcon />}>
+          <Suspense
+            fallback={
+              <div className="w-full h-full flex justify-center items-center">
+                <LoaderIcon size={40} />
+              </div>
+            }
+          >
             <Outlet />
           </Suspense>
         </div>
