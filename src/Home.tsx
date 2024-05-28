@@ -1,7 +1,7 @@
 import { LoaderIcon } from 'lucide-react';
 import { Suspense, useState } from 'react';
 import { Outlet } from 'react-router-dom';
-import Navbar from './components/Navbar';
+import Navbar from './components/navbar/Navbar';
 import Sidebar from './components/Sidebar';
 import { cn } from './lib/utils';
 import { useMediaQuery } from 'usehooks-ts';
