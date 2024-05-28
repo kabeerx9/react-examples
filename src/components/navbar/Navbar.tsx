@@ -7,6 +7,7 @@ import MobileSidebarIcon from './_components/MobileSidebarIcon';
 import ProfileDropdown from './_components/ProfileDropdown';
 import ShowTodosFromRedux from './_components/ShowTodosFromRedux';
 import { useState } from 'react';
+import { Button } from '../ui/button';
 
 interface NavbarProps {
   isDesktopSidebarOpen: boolean;
@@ -29,15 +30,12 @@ const Navbar = ({
   const [isCodeLoading, setIsCodeLoading] = useState(true);
 
   return (
-    <nav className="w-full p-4 h-16 bg-gradient-to-r from-blue-800 to-blue-600 flex items-center">
+    <nav className="w-full p-4 h-16  flex items-center">
       <div className="flex justify-between w-full">
         <div className="flex justify-center items-center gap-5">
-          <div
-            className="text-white font-semibold px-4 py-2 rounded-lg bg-blue-600 hover:bg-blue-700 cursor-pointer transition-colors duration-300"
-            onClick={() => navigate('/')}
-          >
+          <Button size={'sm'} onClick={() => navigate('/')}>
             Home
-          </div>
+          </Button>
 
           {isMobile ? (
             <MobileSidebarIcon
@@ -53,16 +51,17 @@ const Navbar = ({
         </div>
         {/* IF I AM ON PRACTICE 6 SHOW TODO FROM REDUX TOOLKIT */}
         {location.pathname === '/practice6' && <ShowTodosFromRedux />}
-        {/* PROFILE SECTION */}
 
-        <ProfileDropdown />
+        <div className="flex justify-between items-center gap-2">
+          {/* OPEN DIALOG TO SHOW COMPONENT CODE  */}
 
-        {/* OPEN DIALOG TO SHOW COMPONENT CODE  */}
+          <CodeDialog
+            isCodeLoading={isCodeLoading}
+            setIsCodeLoading={setIsCodeLoading}
+          />
 
-        <CodeDialog
-          isCodeLoading={isCodeLoading}
-          setIsCodeLoading={setIsCodeLoading}
-        />
+          <ProfileDropdown />
+        </div>
       </div>
     </nav>
   );

@@ -50,7 +50,11 @@ const CodeDialog = ({ isCodeLoading, setIsCodeLoading }: CodeDialogProps) => {
 
   return (
     <Dialog>
-      <DialogTrigger disabled={isCodeLoading}>Open</DialogTrigger>
+      <DialogTrigger disabled={isCodeLoading || codeString === ''}>
+        <Button disabled={isCodeLoading} size={'sm'}>
+          Code
+        </Button>
+      </DialogTrigger>
       <DialogContent>
         <DialogHeader className="w-full h-full overflow-auto">
           <DialogTitle className="mt-5">
