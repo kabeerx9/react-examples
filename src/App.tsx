@@ -80,7 +80,7 @@ const App = () => {
                 </li>
                 <li>
                   The "Interview Challenge" section is dedicated to showcasing
-                  interview-specific coding challenges and solutions. It
+                  interview-specPhific coding challenges and solutions. It
                   highlights my problem-solving abilities and readiness for
                   technical interviews.
                 </li>
