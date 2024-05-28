@@ -1,5 +1,5 @@
 import { LoaderIcon } from 'lucide-react';
-import { Suspense, useState } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 import { Outlet } from 'react-router-dom';
 import Navbar from './components/navbar/Navbar';
 import Sidebar from './components/Sidebar';
@@ -10,9 +10,21 @@ const Home = () => {
   const [isDesktopSidebarOpen, setIsDesktopSidebarOpen] = useState(true);
   const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
 
-  const [sidebarWidth, setSidebarWidth] = useState(384);
+  const [screenWidth, setScreenWidth] = useState(window.innerWidth);
 
-  const isMobile = sidebarWidth <= 768;
+  useEffect(() => {
+    const handleResize = () => setScreenWidth(window.innerWidth);
+    window.addEventListener('resize', handleResize);
+
+    // Clean up the event listener on component unmount
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
+  const isMobile = screenWidth <= 768;
+
+  const [sidebarWidth, setSidebarWidth] = useState(384);
 
   const handleSidebarWidthChange = (width: number) => {
     setSidebarWidth(width);
