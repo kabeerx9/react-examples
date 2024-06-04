@@ -72,7 +72,7 @@ const Practice5 = () => {
       {/* display the matrix */}
       <div className="grid grid-cols-3 w-60 gap-2">
         {BOX_DATA.map((row, rowIndex) =>
-          row.map((col, colIndex) => (
+          row.map((_, colIndex) => (
             <div
               className={cn(
                 'h-10 w-10 bg-white text-black border-2 border-black',
