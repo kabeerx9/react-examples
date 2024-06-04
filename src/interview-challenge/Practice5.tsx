@@ -1,112 +1,92 @@
-import React, { useState } from 'react';
+import { cn } from '@/lib/utils';
+import { useEffect, useMemo, useRef, useState } from 'react';
+
+const BOX_DATA = [
+  [1, 1, 1],
+  [1, 0, 0],
+  [1, 1, 1],
+];
 
 const Practice5 = () => {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-  });
-  const [error, setError] = useState({
-    name: '',
-    email: '',
-  });
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFormData((prev) => ({
-      ...prev,
-      [e.target.name]: e.target.value,
-    }));
-  };
-
-  const validateFormData = () => {
-    let isError = false;
-
-    if (!formData.name) {
-      setError((prev) => ({
-        ...prev,
-        name: 'Name is required',
-      }));
-      isError = true;
-    } else {
-      setError((prev) => ({
-        ...prev,
-        name: '',
-      }));
+  const countInBox = useMemo(() => {
+    let count = 0;
+    for (let i = 0; i < BOX_DATA.length; i++) {
+      for (let j = 0; j < BOX_DATA[0].length; j++) {
+        if (BOX_DATA[i][j] === 1) {
+          count++;
+        }
+      }
     }
-    if (!formData.email) {
-      setError((prev) => ({
-        ...prev,
-        email: 'Email is required',
-      }));
-      isError = true;
-    } else {
-      setError((prev) => ({
-        ...prev,
-        email: '',
-      }));
+    return count;
+  }, []);
+
+  const [isSelected, setIsSelected] = useState(() => {
+    const arr = [];
+    for (let i = 0; i < BOX_DATA.length; i++) {
+      arr.push(new Array(BOX_DATA[0].length).fill(false));
     }
+    return arr;
+  });
 
-    return isError;
-  };
+  const [selectOrder, setSelectOrder] = useState<string[]>([]);
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const isOngoing = useRef(false);
 
-    const error = validateFormData();
-
-    if (error) {
+  const handleSelect = (rowIndex: number, colIndex: number) => {
+    if (isSelected[rowIndex][colIndex] || isOngoing.current) {
       return;
     }
-    setError({
-      name: '',
-      email: '',
+    setIsSelected((prev) => {
+      const newArr = [...prev];
+      newArr[rowIndex][colIndex] = true;
+      return newArr;
     });
 
-    fetch('https://jsonplaceholder.typicode.com/posts', {
-      method: 'POST',
-      body: JSON.stringify(formData),
-      headers: {
-        'Content-type': 'application/json; charset=UTF-8',
-      },
-    })
-      .then((res) => res.json())
-      .then((json) => {
-        console.log(json);
-        setFormData({
-          name: '',
-          email: '',
-        });
-      });
+    setSelectOrder((prev) => [...prev, `${rowIndex}-${colIndex}`]);
   };
+  useEffect(() => {
+    if (selectOrder.length === countInBox) {
+      isOngoing.current = true;
+
+      let index = 0;
+      const interval = setInterval(() => {
+        const [row, col] = selectOrder[index].split('-').map(Number);
+        setSelectOrder((prev) => prev.slice(1));
+        setIsSelected((prev) => {
+          const newArr = [...prev];
+          newArr[row][col] = false;
+          return newArr;
+        });
+        index++;
+
+        if (index === countInBox) {
+          clearInterval(interval);
+          isOngoing.current = false;
+        }
+      }, 1000);
+    }
+  }, [selectOrder, countInBox]);
+
   return (
-    <div>
-      <div>Simple form with inputs and validation</div>
-      <form
-        className="flex flex-col bg-gray-200 w-1/2 justify-center items-center "
-        onSubmit={handleSubmit}
-      >
-        <label htmlFor="name">Name</label>
-        <input
-          name="name"
-          type="text"
-          value={formData.name}
-          onChange={handleChange}
-        />
-        {error.name && <p className="text-red-500 font-bold">{error.name}</p>}
-        <label htmlFor="email">Email</label>
-        <input
-          name="email"
-          type="text"
-          value={formData.email}
-          onChange={handleChange}
-        />
-        {error.email && <p className="text-red-500 font-bold">{error.email}</p>}
-        <button
-          className="p-2 m-2 bg-black text-white rounded-lg"
-          type="submit"
-        >
-          Submit
-        </button>
-      </form>
+    <div className="w-full h-full flex justify-center items-center ">
+      {/* display the matrix */}
+      <div className="grid grid-cols-3 w-60 gap-2">
+        {BOX_DATA.map((row, rowIndex) =>
+          row.map((col, colIndex) => (
+            <div
+              className={cn(
+                'h-10 w-10 bg-white text-black border-2 border-black',
+                BOX_DATA[rowIndex][colIndex] === 0 && 'border-none text-white',
+                isSelected[rowIndex][colIndex] && 'bg-green-500',
+                !isSelected[rowIndex][colIndex] && 'bg-white',
+              )}
+              onClick={() => handleSelect(rowIndex, colIndex)}
+            >
+              {rowIndex}-{colIndex}
+            </div>
+          )),
+        )}
+      </div>
     </div>
   );
 };
