@@ -1,39 +1,67 @@
-# React Explorer
+# My Vite React App
 
-Welcome to React Explorer, a comprehensive project designed for those who wish to dive deep into React and emerge with a profound mastery of its capabilities. React Explorer is more than just a project; it's a journey through the intricacies of React, aimed at developers seeking to enhance their skills, understand complex concepts, and tackle the kind of challenges that are often encountered in technical interviews.
+This project uses Docker for both development and production environments.
 
-## About the Project
+## Development
 
-React Explorer integrates a wide array of React functionalities and concepts into a single, cohesive learning experience. From fundamental topics like state management and component lifecycle to advanced subjects such as performance optimization and localization, this project is your playground for discovery and innovation.
+To run the app in development mode with real-time changes:
 
-## Key Features
+1. Make sure you have Docker and Docker Compose installed.
+2. Run the following command in the project root:
 
-- **Hands-on Learning:** Implement and learn through doing, with a focus on practical application of React concepts.
-- **Interview Preparation:** Engage with challenges commonly found in technical interviews, designed to test and improve your problem-solving skills using React.
-- **Advanced Topics Exploration:** Delve into advanced React topics such as localization, event bubbling, effect hooks, and performance, understanding not just the "how" but the "why" behind each concept.
+docker-compose up
 
-## Technology Stack
+3. Open your browser and navigate to `http://localhost:3000`.
+4. Make changes to your React files and see them reflected in real-time.
 
-- **React:** The core of our project, enabling dynamic UIs and efficient front-end development.
-- **TypeScript:** Adds type safety to enhance code quality and readability.
-- **Vite:** A modern build tool for JavaScript projects, offering fast refresh and optimized bundling.
+To stop the development server:
 
-## Getting Started
+docker-compose down
 
-To embark on your journey with React Explorer, follow these steps to set up the project environment:
+## Production
 
-1. **Clone the Repository:** Start by cloning this repository to your local machine.
-2. **Install Dependencies:** Navigate to the project directory and run `npm install` to install the required dependencies.
-3. **Explore:** Dive into the codebase, experiment with different React features, and start building your own components and applications.
+To build and run the app in production mode:
 
-## Contribution
+1. Build the Docker image:
 
-React Explorer is a living project, constantly evolving with the React ecosystem. Contributions are welcome, whether they're feature implementations, bug fixes, or documentation improvements. Feel free to fork the repository and submit pull requests.
+docker build -t my-vite-app .
 
-## License
+2. Run the container:
 
-This project is open-source and available under the [MIT License](LICENSE.md).
+docker run -p 3000:3000 my-vite-app
 
----
+3. Open your browser and navigate to `http://localhost:3000`.
 
-This README is designed to succinctly convey the essence and objectives of your React Explorer project, inviting both learning and contribution. It can be modified as your project grows and evolves.
+## Switching Between Dev and Prod
+
+- For development, always use `docker-compose up`.
+- For production, use the `docker build` and `docker run` commands mentioned above.
+
+## Notes
+
+- The development setup uses Vite's built-in dev server and supports hot module replacement.
+- The production setup builds the app and serves it using the `serve` package.
+- Make sure to run `docker-compose build` or `docker build` whenever you change the Dockerfile or add new dependencies.
+
+#The vite.config would be modified to
+
+import path from 'path';
+import react from '@vitejs/plugin-react';
+import { defineConfig } from 'vite';
+
+export default defineConfig({
+plugins: [react()],
+resolve: {
+alias: {
+'@': path.resolve(\_\_dirname, './src'),
+},
+},
+server: {
+watch: {
+usePolling: true,
+},
+host: true, // needed for the Docker Container port mapping to work
+strictPort: true,
+port: 3000, // you can replace this port with any port
+},
+});

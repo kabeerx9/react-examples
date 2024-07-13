@@ -51,7 +51,7 @@ const App = () => {
       <Card className="bg-white shadow-lg rounded-lg p-8 max-w-3xl">
         <CardHeader>
           <CardTitle className="text-4xl font-bold text-blue-600 mb-4">
-            Welcome to Kabeer's Side Project! 👋
+            Welp👋
           </CardTitle>
           <CardDescription className="text-lg text-gray-600">
             This side project is a playground for me to explore and implement
