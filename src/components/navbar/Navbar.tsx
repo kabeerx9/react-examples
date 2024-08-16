@@ -36,7 +36,7 @@ const Navbar = ({
     };
   }, []);
 
-  const isMobile = screenWidth <= 768;
+  const isMobile = screenWidth <= 600;
 
   const [isCodeLoading, setIsCodeLoading] = useState(true);
 

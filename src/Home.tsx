@@ -22,7 +22,9 @@ const Home = () => {
     };
   }, []);
 
-  const isMobile = screenWidth <= 768;
+  console.log('Screen width: ', screenWidth);
+
+  const isMobile = screenWidth <= 600;
 
   const [sidebarWidth, setSidebarWidth] = useState(384);
 
